@@ -1,0 +1,53 @@
+<!-- header.ejs start[[ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JAY Skrity and the Domsters</title>
+	<link rel="stylesheet" href="css/basic.css">
+	<script src="js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<img src="img/banner-1.jpg" alt="">
+			<nav>
+				<ul>
+					<li><a href="index.html" >Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="photos.html">Photos</a></li>
+					<li><a href="live.html">Live</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<article>
+<!--header.ejs end]] -->
+
+<h1>Contact the band</h1>
+<form action="/submit.html" method="post">
+	<fieldset>
+		<p>
+			<label for="name">Name:</label>
+			<input id="name" name="name" placeholder="Your name" required="required" type="text">
+		</p>
+		<p>
+			<label for="email">Email:</label>
+			<input id="email" name="email" placeholder="Your email address" require="required" type="text">
+		</p>
+		<p>
+			<label for="message">Message:</label>
+			<textarea name="message"  id="message" cols="45" rows="7" required="required" placeholder="Write you message here."></textarea>
+		</p>
+		<input type="submit" value="Send">
+	</fieldset>
+</form>
+
+<!-- footer.ejs start[[ -->
+</article>
+	</div>
+	<script src="js/global.js"></script>
+	<script src="js/moveElement.js"></script>
+</body>
+</html>
+<!--footer.ejs end]] -->

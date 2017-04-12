@@ -1,0 +1,26 @@
+<!-- header.ejs start[[ -->
+@@include('inc/header.ejs')
+<!--header.ejs end]] -->
+
+<h1>Contact the band</h1>
+<form action="/submit.html" method="post">
+	<fieldset>
+		<p>
+			<label for="name">Name:</label>
+			<input id="name" name="name" placeholder="Your name" required="required" type="text">
+		</p>
+		<p>
+			<label for="email">Email:</label>
+			<input id="email" name="email" placeholder="Your email address" require="required" type="text">
+		</p>
+		<p>
+			<label for="message">Message:</label>
+			<textarea name="message"  id="message" cols="45" rows="7" required="required" placeholder="Write you message here."></textarea>
+		</p>
+		<input type="submit" value="Send">
+	</fieldset>
+</form>
+
+<!-- footer.ejs start[[ -->
+@@include('inc/footer.ejs')
+<!--footer.ejs end]] -->

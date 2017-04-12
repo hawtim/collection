@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>vue过滤器</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="app">
+    <p>{{information | json 20}}</p>
+
+    <p v-text="message | date">{{message}}</p>
+ 
+</div>
+ 
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            information:{'name':'Roger', 'age':26},
+            message :'2016-01-02 10:35:36'
+        }
+    })
+    Vue.filter('date',function(message){
+        var now = new Date(message);
+        return now.getFullYear()+'-'
+                +(now.getMonth()+1)+'-'
+                +now.getDate()+' '
+                +(now.getHours()<12?'0'+now.getHours():now.getHours())+':'
+                +(now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'
+                +now.getSeconds();
+    });
+</script>
+</script>
+</body>
+</html>

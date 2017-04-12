@@ -1,0 +1,277 @@
+@charset "UTF-8";
+/*! ============================================================
+   reset样式
+  ============================================================ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+html {
+  font-size: 20px; }
+
+body {
+  font-size: 1em;
+  margin: 1em 0;
+  background-image: url(../img/background.gif);
+  background-attachment: fixed;
+  background-position: 0 0;
+  background-repeat: repeat-x; }
+
+#home {
+  width: 100%;
+  background: url("../img/bg-1 (1).jpg") 0 0 no-repeat;
+  background-size: 100%; }
+
+#about {
+  width: 100%;
+  background: url("../img/bg-1 (2).jpg") 0 0 no-repeat;
+  background-size: 100%; }
+
+#photos {
+  width: 100%;
+  background: url("../img/bg-1 (3).jpg") 0 0 no-repeat;
+  background-size: 100%; }
+
+#live {
+  width: 100%;
+  background: url("../img/bg-1 (4).jpg") 0 0 no-repeat;
+  background-size: 100%; }
+
+#contact {
+  width: 100%;
+  background: url("../img/bg-1 (5).jpg") 0 0 no-repeat;
+  background-size: 100%; }
+
+#slideshow {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden; }
+
+#preview {
+  position: absolute;
+  border-width: 0;
+  outline-width: 0; }
+
+header {
+  background-image: url(../img/guitar.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  border-width: .1em;
+  border-style: solid;
+  border-bottom-width: 0; }
+  header nav {
+    background-image: url(../img/navbar.gif);
+    background-position: bottom left;
+    background-repeat: repeat-x;
+    border-width: .1em;
+    border-style: solid;
+    border-bottom-width: 0;
+    padding-left: 10%; }
+    header nav ul {
+      width: 100%;
+      overflow: hidden;
+      border-left-width: .1em;
+      border-left-style: solid; }
+    header nav li {
+      display: inline; }
+      header nav li a {
+        display: block;
+        float: left;
+        padding: .5em 2em;
+        border-right: .1em solid; }
+
+article {
+  border-width: .1em;
+  border-style: solid;
+  outline-width: .1em;
+  outline-style: solid;
+  padding-left: 10%; }
+
+body {
+  background-color: #334; }
+
+a:link {
+  color: #445;
+  background-color: #eb6; }
+
+a:visited {
+  color: #345;
+  background-color: #eb6; }
+
+a:hover {
+  color: #667;
+  background-color: #fb5; }
+
+a:active {
+  color: #778;
+  background-color: #ec8; }
+
+.here:link, .here:visited, .here:hover, .here:hover, .here:active {
+  color: #eef;
+  background-color: #779; }
+
+header {
+  color: #ec8;
+  background-color: #334;
+  border-color: #667; }
+  header nav {
+    color: #455;
+    background-color: #789;
+    border-color: #667; }
+
+article {
+  color: #223;
+  background-color: #789;
+  border-color: #667; }
+
+header nav ul {
+  border-color: #99a; }
+
+header nav a:link, header nav a:visited {
+  color: #eef;
+  background-color: transparent;
+  border-color: #99a; }
+
+header nav a:hover {
+  color: #445;
+  background-color: #eb6; }
+
+header nav a:active {
+  color: #667;
+  background-color: #ec8; }
+
+article img {
+  border-color: #ba9;
+  outline-color: #dcb; }
+
+#imagegallery a {
+  background-color: transparent; }
+
+tr td {
+  color: #223;
+  background-color: #eb6; }
+
+.wrapper {
+  width: 1000px;
+  overflow: hidden;
+  margin: 0 auto; }
+
+body {
+  font-size: 76%;
+  font-family: "Helvetica","Arial",sans-serif; }
+
+body * {
+  font-size: 1em; }
+
+a {
+  font-weight: bold;
+  text-decoration: none; }
+
+header nav {
+  font-family: "Lucida Grande","Helvetica","arial",sans-serif; }
+
+header img {
+  width: 1000px; }
+
+article {
+  line-height: 1.8em; }
+  article p {
+    margin: 1em 0; }
+
+h1, h2, h3 {
+  font-family: "Georgia","Times New Roman",sans-serif; }
+
+h1 {
+  font: 2.4em normal; }
+
+h2 {
+  font: 1.8em normal; }
+
+h3 {
+  font: 1.4em normal; }
+
+h2, h3 {
+  margin-top: 1em; }
+
+#imagegallery li {
+  list-style-type: none;
+  display: inline; }
+
+textarea {
+  font-family: "Helvetica","Arial",sans-serif; }
+
+td {
+  padding: .5em 3em; }
+
+dl {
+  overflow: hidden; }
+
+dt {
+  float: left;
+  margin-right: 1em; }
+
+dd {
+  float: left;
+  margin-right: 3em; }
+
+td.odd td {
+  color: #223;
+  background-color: #ec8; }
+
+td.highlight td {
+  color: #223;
+  background-color: #cba; }
+
+label {
+  display: block; }
+
+fieldset {
+  border: 0; }
+
+input.placeholder {
+  color: grey; }
