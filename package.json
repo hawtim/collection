@@ -1,0 +1,24 @@
+{
+  "name": "fe-learn-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "vue-occupy": "0.0.8",
+    "vuedraggable": "2.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hawtim/FELearnCode.git"
+  },
+  "author": "zhanghaotian <hawtim_zhang@qq.com> (https://github.com/hawtim)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hawtim/FELearnCode/issues"
+  },
+  "homepage": "https://github.com/hawtim/FELearnCode#readme"
+}

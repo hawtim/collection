@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 变量教程</title>
+</head>
+<style>
+    /* 变量名前面要加两根连词线， 并且对大小写敏感 */
+    :root{
+        --main-color: #4d4e53;
+        --main-bg: rgb(255, 255, 255);
+        --logo-border-color: rebeccapurple;
+        --screen-category: 'desktop';
+        --header-height: 68px;
+        --content-padding: 10px 20px;
+        --foo: 'hawtim zhang';
+        --base-line-height: 1.428571429;
+        --transition-duration: .35s;
+        --external-link: "external link";
+        --margin-top: calc(2vh + 20px);
+    }
+    /* 变量的作用域就是它所在的选择器的有效范围。 */
+
+    :root {
+        --color: blue;
+    }
+    div {
+        --color: green;
+    }
+    #alert {
+        --color: red;
+    }
+    * {
+        color: var(--color);
+    }
+    
+    /*响应式布局，在media命令里声明变量，使得不同的屏幕宽度有不同的变量值*/
+    body {
+        --primary: green;
+        --secondary: #F7EFD2;
+    }
+    a {
+        color: var(--primary);
+    }
+    @media screen and (max-width: 1024px) {
+        :root {
+            --screen-category: 'tablet';
+        }
+        body {
+            --primary: blue;
+            --secondary: #7F583F;
+        }  
+    }
+
+    @media screen and (max-width: 640px) {
+        :root {
+            --screen-category: 'phone';
+        }
+        body {
+            --primary:  red;
+            --secondary: #7F583F;
+        }
+    }
+
+    body:after {
+        content: '--screen-category : 'var(--screen-category);
+    }
+
+    /*var()函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。*/
+    a {
+        color: var(--foo, #7f583f)
+    }
+    p {
+        font-family: var(--font-stack, "Roboto", "Helvetica");
+        padding: var(--pad, 10px 15px 20px);
+    }
+    /*注意，变量值只能用作属性值，不能用作属性名。*/
+
+    /*变量值的类型*/
+    /*如果变量是一个字符串，可以与其他字符串拼接*/
+    span {
+        --bar: 'hello';
+        /*这里的--foo根据优先级*/
+        --foo: var(--bar)'world'
+    }
+    span:after {
+        display: block;
+        content: 'foobar : 'var(--foo)
+    }
+    .foo {
+        --gap: 20;
+        /*要使用calc来计算*/
+        margin-top: calc(var(--gap)*1px);
+    }
+    .foo {
+        /*如果变量值带有单位，就不能写成字符串*/
+        /*有效*/
+        --foo: 20px;
+        /*无效*/
+        --foo: '20px';
+        font-size:var(--foo)
+    }
+    
+    /*兼容性处理*/
+    /*对于不支持 CSS 变量的浏览器，可以采用下面的写法。*/
+    a {
+        color: #7F583F;
+        color: var(--primary);
+        /*对css无用的信息存入css变量并可以让JavaScript读取*/
+        --foo: if (x > 5 ) this.width = 10
+    }
+</style>
+<body>
+    <a href="javascript:;">a tag</a>
+    <p>p tag</p>
+    <span>span tag</span>
+    <div class="foo">
+        class foo
+    </div>
+    <p>蓝色</p>
+    <div>绿色</div>
+    <div id="alert">红色</div>
+</body>
+<script>
+    // 检测是否支持css变量
+    const isSupported =
+    window.CSS &&
+    window.CSS.supports &&
+    window.CSS.supports('--a', 0);
+
+    if (isSupported) {
+        console.log(isSupported)
+    /* supported */
+    } else {
+        console.log('not Supported')
+    /* not supported */
+    }
+    // 设置变量
+    document.body.style.setProperty('--primary', '#ccc')
+    // 读取变量
+    document.body.style.getPropertyValue('--primary').trim()
+    // 删除变量
+    document.body.style.removeProperty('--primary')
+    // 这意味着，JavaScript可以将任意值存入样式表，下面是一个监听事件的例子，事件信息被存入css变量
+    const docStyle = document.documentElement.style;
+    document.addEventListener('mousemove', (e) => {
+        docStyle.setProperty('--mouse-x', e.clientX);
+        docStyle.setProperty('--mouse-y', e.clientY)
+    })
+</script>
+</html>
