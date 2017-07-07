@@ -1,0 +1,42 @@
+<!-- slottest.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slot内容分发</title>
+	<!-- <link rel="stylesheet" type="text/css" href="./demo.css"> -->
+</head>
+<body>
+	<div id="app">
+		<my-component>
+			<h1 slot="header">this is slot1</h1>
+			<h2 slot="body" >slot2 body</h2>
+		</my-component>
+		<my-component></my-component>
+	</div>
+
+	<template id="myComponent">
+		<div class="content">
+			<h2>this is a component</h2>
+			<slot name="header">
+			  default header
+			</slot>
+			<slot name="body">
+				default body
+			</slot>	
+			<p>hahhahahha</p>
+		</div>
+	</template>
+	<script src="./vue.js"></script>
+	<script>
+		Vue.component('my-component', {
+			template :'#myComponent'
+		})
+		
+
+		new Vue({
+			el:'#app'
+		})
+	</script>
+</body>
+</html>

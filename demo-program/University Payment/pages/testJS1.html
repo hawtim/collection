@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>获取下拉列表选中项的值和文本(select)</title>
+</head>
+<body>
+<script>
+ 
+//获取下拉列表选中项的文本
+function getSelectedText(name){
+    var obj=document.getElementById(name);
+    for(i=0;i<obj.length;i++){
+        if(obj[i].selected==true){
+            return obj[i].innerText;//关键是通过option对象的innerText属性获取到选项文本
+        }
+    }
+}
+ 
+//获取下拉列表选中项的值
+function getSelectedValue(name){
+    var obj=document.getElementById(name);
+    return obj.value;      //如此简单，直接用其对象的value属性便可获取到
+}
+ 
+</script>
+<select id="myselect">
+<option value="fist">1</option>
+<option value="second">2</option>
+<option value="third">3</option>
+</select>
+ 
+<input type="button" value="所选文本" onclick="alert(getSelectedText('myselect'));" />
+<input type="button" value="所选值" onclick="alert( getSelectedValue('myselect'));" />
+</body>
+</html>

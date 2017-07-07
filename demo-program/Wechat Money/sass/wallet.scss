@@ -1,0 +1,222 @@
+/*!===========微信支付钱包初期页面=============*/
+@charset "utf-8";
+@import "compass/reset";
+// 在html文档里使用了normalize.css
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/utilities/sprites";
+// sprite图
+@mixin icons{background:url(../images/share-wallet/icons.png) no-repeat;background-size:auto 22.5rem }
+@mixin ico-arrow-right{height:1.2rem;width:.7rem;background-position: -7.1rem -6.9rem;}
+@mixin ico-welfare{height:2.8rem;width:3.1rem;background-position: -6.7rem -3.4rem;}
+@mixin ico-QVIP{height:4.0rem;width:3.0rem;background-position: 0 -6.0rem;}
+@mixin ico-Qcoin{height:3.0rem;width:3.1rem;background-position: -6.6rem 0;}
+@mixin ico-transfer{height:2.4rem;width:3.0rem;background-position: -9.8rem -3.4rem;}
+@mixin ico-SQVIP{height:4.1rem;width:3.0rem;background-position: -3.3rem -6.0rem;}
+@mixin ico-cash{height:3.0rem;width:3.0rem;background-position: 0 0;}
+@mixin ico-lottery{height:3.0rem;width:3.0rem;background-position: -3.4rem 0;}
+@mixin ico-gdiamond{height:2.2rem;width:3.0rem;background-position: -3.3rem -3.5rem;}
+@mixin ico-ydiamond{height:2.2rem;width:3.0rem;background-position: 0 -3.5rem;}
+@mixin ico-holiwood{height:3.0rem;width:3.0rem;background-position: -9.9rem 0;}
+@mixin bg-success{height:12.1rem;width:12.1rem;background-position: 0 -10.4rem;}
+@mixin wrapper{position:relative; width:100%; margin:0 auto; -webkit-box-sizing: border-box; box-sizing: border-box; background: #FFF;}
+
+/*=================公用资源=============*/
+em{font-weight: bold; font-style:normal; }
+a{text-decoration: none; color:#CCC; }
+.no-copy{-webkit-touch-callout: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; -khtml-user-select: none; user-select: none; } .text-copy{-webkit-user-select:text;user-select:text;}
+.ellipsis {display: inline-block; white-space: nowrap; word-wrap: normal; width: 100%; overflow: hidden; -webkit-text-overflow: ellipsis; text-overflow: ellipsis; }
+.clearfix {zoom:1}
+.clearfix:after {content: ' '; display: block; clear: both;}
+/*=============文档自带样式=============*/
+html {
+	display: block;
+    -ms-touch-action: none;
+    font-size: 10px;
+    // font-size: 62.5%;
+    -webkit-text-size-adjust: 100%;
+}
+body{
+	width:100%;
+	font-size: 1.8rem;
+	background: #FFF;
+	// overflow-x:hidden;
+	font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self;
+}
+.wrapper{
+	@include wrapper;
+	overflow:hidden;
+}
+.header{
+	background: #499752;
+	width: 100%;
+	height: 9.5rem;
+	border-bottom: 1px solid #DEDFE0;
+	// display: -ms-box;
+	// display: -mos-box;
+	// display: -webkit-box;
+	display: box;
+	-webkit-box-align: center;
+	// -ms-box-align: center;
+	// -mos-box-align:center;
+	box-align: center;
+	p{
+		position: relative;
+		top:2.5rem;
+		left: 1.5rem;
+		width:100%;
+		height:4.0rem;
+		font-weight: bold;
+		color: #FFF;
+		font-size: 1.8rem;
+		line-height: 1.8rem;
+		span{
+			display: block;
+			color: #B6D5BA;
+			font-size:1.5rem;
+			// line-height: 15+10px;
+			line-height: 2.5rem;
+		}
+	}
+	em{
+		font-style: normal;
+		color:#FFF100;
+		font-size: 2.5rem;
+	}
+	.sign-success{
+		position: absolute;
+		top: -1.5rem;
+		right:1.5rem;
+		@include icons;
+		@include bg-success;
+	}
+}
+.container{
+	width: 100%;
+	height: auto;
+		li{
+			height:7.0rem;
+			// line-height: 70px;
+		a{
+			display: block;
+			position: relative;
+			width:100%;
+			height:7.0rem;
+			em{
+				display: block;
+				// margin-left:-35+60px;
+				// margin-left: 2.5rem;
+				position: relative;
+				top:-1.3rem;
+				left: 6.0rem;
+				color:#333;
+				font-size: 1.8rem;
+				line-height: 1.8rem;
+			}
+			p{
+				height: 1.3rem;
+				font-size: 1.3rem;
+				line-height: 1.8rem;
+				position: relative;
+				width:32-6rem;
+				left:6rem;
+			}
+			// 各个图标的定位
+			i[class*="ico"]{display: inline-block;position: relative;left:1.5rem;}
+			.ico-cash{top:2.0rem!important;@include icons;@include ico-cash;}
+			.ico-lottery{top:1.9rem!important;@include icons;@include ico-lottery;}
+			.ico-Qcoin{top:2.0rem!important;@include icons;@include ico-Qcoin;}
+			.ico-holiwood{top:1.8rem!important;@include icons;@include ico-holiwood;}
+			.ico-ydiamond{top:2.5rem!important;@include icons;@include ico-ydiamond;}
+			.ico-gdiamond{top:2.5rem!important;@include icons;@include ico-gdiamond;}
+			.ico-QVIP{top:1.0rem!important;@include icons;@include ico-QVIP;}
+			.ico-SQVIP{top:1.2rem!important;@include icons;@include ico-SQVIP;}
+			.ico-welfare{top:2.5rem!important;@include icons;@include ico-welfare;}
+			.ico-transfer{top:2.3rem!important;@include icons;@include ico-transfer;}
+			.ico-lottery+em, .ico-Qcoin+em, .ico-holiwood+em{top:-0.6rem;}
+			.ico-ydiamond+em, .ico-gdiamond+em{top:0.2rem;}
+			.ico-QVIP+em, .ico-SQVIP+em{top:-1.6rem;}
+			.ico-cash+em+p{/* top:-30+18px; */top:-1.3rem;}
+			.ico-welfare+em+p{/* top:-27+23px; */top:-1rem;}
+			.ico-transfer+em+p{/* top:-23+20px; */top:-1rem;}
+			}
+		}
+	li::after{
+		content: "";
+		display: block;
+		height:.1rem;
+		width:95.3125%;
+		background-color: #DEDFE0;
+		position: relative;
+		left:1.5rem;
+		top:0;
+	}
+	li a::after{
+		content:"";
+		width: .7rem;
+		height: 1.2rem;
+		position: absolute;
+		// top:29+6px;
+		top:2.8rem;
+		right:1.5rem;
+		// margin-left:27.0rem;
+		@include icons;
+		@include ico-arrow-right;
+		// background: transparent url(../images/share-wallet/ico-arrow-right.png) 0 0 no-repeat;
+		// background-size: .7rem auto;
+	}
+}
+
+
+// 媒介查询语句
+@media screen and (max-width:320px){
+	html{
+		font-size: 10px;
+	}
+}
+@media screen and (min-width: 321px) and (max-width: 479px ) {
+    html {
+        font-size: 12px;
+    }
+}
+@media screen and (min-width: 480px) and (max-width: 639px ) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 719px ) {
+    html {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 720px) and (max-width: 749px ) {
+    html {
+        font-size: 22.5px;
+    }
+}
+
+@media screen and (min-width: 750px) and (max-width: 799px ) {
+    html {
+        font-size: 23.5px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 959px ) {
+    html {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1079px ) {
+    html {
+        font-size: 30px;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    html {
+        font-size: 32px;
+    }
+}

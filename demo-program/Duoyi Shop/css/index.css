@@ -1,0 +1,420 @@
+ /**
+ * 闭合浮动
+ * @Doc: http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+
+ .clearfix:before, .clearfix:after {
+   content: "";
+   display: table;
+ }
+
+ .clearfix:after {
+   clear: both;
+ }
+
+ .clearfix {
+   *zoom: 1; /* IE6-7 触发 hasLayout */
+ }
+
+ /*
+*@ Name:       inline-block 组件
+*@ Usage:      清除空隙需在外层容器加上 dib-box，dib 可单独使用
+*/
+
+ .dib {
+   display: inline-block;
+   *display: inline;
+   *zoom: 1;
+ }
+
+ .dib-box {
+   font-size: 0; /* 所有浏览器 */
+   *word-spacing: -1px; /* IE6/7 */
+ }
+
+ @media (-webkit-min-device-pixel-ratio: 0) {
+   .dib-box {
+     letter-spacing: -5px; /* Safari 5- 等不支持 font-size: 0 的浏览器 */
+   }
+ }
+
+ .dib-box .dib {
+   vertical-align: top;
+   font-size: 14px;
+   letter-spacing: normal;
+   word-spacing: normal;
+   line-height: inherit;
+ }
+
+ /*
+*@ Name:        自适应两端对齐组件
+*@ Rely：       依赖 inline-block 解决方案
+*@ Usage:       外层加上 justify，内部需要两端对齐的元素都加上 dib,dib 与 justify 不要同时出现
+*@ Demo:        http://jsbin.com/OsEcOMA/1/
+*/
+ /**
+* 防止行高增大
+* 尽量不要在父元素上设置行高
+*/
+
+ .justify, .dib-box .justify {
+   font-size: 0;
+   line-height: inherit;
+ }
+
+ .justify {
+   text-align: justify;
+   text-justify: inter-ideograph; /* IE 6-7 */
+   *zoom: 1; /* IE 6-7 触发 hasLayout 使一行也能两端对齐 */
+   text-align-last: justify; /* IE 8+ */
+ }
+
+ /**
+* 不支持 text-align-last 的浏览器用伪元素模拟
+* 1. margin-left:100% 仅 WebKit 支持
+*/
+
+ .justify:after {
+   content: "";
+   display: inline-block;
+   width: 100%; /* 1 */
+ }
+
+ /* 子元素取消两端对齐 */
+
+ .justify .dib {
+   text-align-last: auto;
+   text-justify: auto;
+   text-align: left;
+   font-size: 14px;
+   letter-spacing: normal;
+   word-spacing: normal;
+ }
+
+/* 页面部分 */
+ body {
+  color:#232b2d;
+  background: #f6f5f5;
+}
+
+ a {
+  color:#232b2d; /* IE 6-7 */
+  outline:0!important; /*去掉点击链接的虚线*/
+}
+
+ .gray {
+   color: #b8b8b8;
+ }
+
+ .wrap {
+   max-width: 1200px;
+   min-width: 900px;
+   *width: 1200px; /* 兼容IE6/7 */
+   margin: 0 auto;
+ }
+
+ .header {
+   height: 66px;
+   background: #1879e7;
+ }
+
+ .logo {
+   width: 128px;
+   height: 44px;
+   margin: 10px 0 0;
+   background: url(../img/i.png);
+ }
+
+ .my-shopping a {
+   width: 88px;
+   margin: 0 0 0 -88px;
+   position: absolute;
+   top: 20px;
+   cursor: pointer;
+   color: #fff;
+   background: url(../img/i.png) 60px -104px;
+ }
+
+ .category li {
+   float: left;
+   padding: 30px 20px 30px 0;  /*为兼容ie6用padding*/
+ }
+
+ .category a.active,
+ .category a:hover {
+   color: #1879e7;
+ }
+
+ .goods-list {
+   margin: 0 0 0 -20px;
+   *zoom: 1; /*为兼容ie6*/
+ }
+
+ .goods-list dl {
+   float: left;
+   margin: 0 0 25px 20px;
+   position: relative;
+   width: 284px;
+   height: 235px; /*为兼容ie6*/
+   overflow: hidden; /*为兼容ie6*/
+   *display: inline;  /*为兼容ie6*/
+   text-align: center;
+   /*box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);*/
+ }
+
+ .goods-list dl:hover {
+   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+   -webkit-transition: box-shadow 0.5s ease;
+   -o-transition: box-shadow 0.5s ease;
+   transition: box-shadow 0.5s ease;
+ }
+
+ .goods-list dt {
+   position: relative;
+   height: 157px;
+ }
+
+ .goods-list dt span {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   width: 65px;
+   height: 30px;
+   line-height: 30px;
+   color: #fff;
+ }
+
+ .goods-list span.auction {
+   background: #f4bf1c;
+ }
+
+ .goods-list span.rush {
+   background: #ea563c;
+ }
+
+ .goods-list dd {
+   font-size: 18px;
+   line-height: 1.5;
+   height: 78px;
+   padding: 12px 0 0;
+   background: #fff;
+ }
+
+ .goods-list dd span {
+   font-size: 16px;
+   color: #e9563d;
+ }
+
+ .goods-list img {
+   width: 284px;
+   height: 157px;
+ }
+
+ .nav {
+   margin: 18px 0;
+ }
+
+ .nav span {
+   display: inline-block;
+   padding: 0 0 0 35px;
+   line-height: 24px;
+   color: #8b8b8b;
+   background: url(../img/i.png) 0 -192px;
+ }
+
+ table {
+   width: 100%;
+   background: #fff;
+ }
+
+ table th, table td {
+   border: 0;
+   padding: 8px 38px;
+ }
+
+ table th {
+   font-weight: 700;
+ }
+
+ table .b {
+   background: #f9fafc;
+ }
+
+ .goods .tab {
+   margin: 10px 0 0;
+   border-top: 5px solid #e8e8ea;
+   background: #f9fafc;
+ }
+
+ .goods .item {
+   padding: 0 12px;
+   line-height: 40px;
+   cursor: pointer;
+ }
+
+ .goods .tab .active {
+   margin: -5px 0 0;
+   border-top: 5px solid #1f95ef;
+   background: #fff;
+   cursor: default;
+ }
+
+ .goods-t {
+   padding: 30px 0;
+   background: #fff;
+ }
+
+ .goods-t img {
+   padding: 0 38px;
+   width: 340px;
+   height: 220px;
+ }
+
+ .summary {
+   margin: 12px 0;
+   padding: 12px 16px;
+   background: #f9fafc;
+ }
+
+ .summary dt span {
+   display: inline-block;
+   margin: 15px 0 0;
+ }
+
+ .summary dd {
+   margin: 0 0 0 16px;
+ }
+
+ .summary ul {
+   margin-top: 14px;
+ }
+
+ .summary li {
+   font-size: 12px;
+   line-height: 1.4;
+   color: #b8b8b8;
+ }
+
+ .summary li span {
+   color: #189ce7;
+ }
+
+ .btn {
+   display: inline-block;
+   border-radius: 2px;
+   padding: 4px 40px;
+   font-weight: 700;
+   cursor: pointer;
+   background-color: #e9563d;
+   color: #fff;
+ }
+
+ input.btn {
+   border:0;
+   padding: 7px 40px;
+   outline:0
+ }
+
+ .price {
+   color: #e9563d;
+   font-size: 30px;
+ }
+
+ .detail {
+   margin: 0 0 20px;
+   padding: 30px 40px;
+   line-height: 2;
+   background: #fff;
+ }
+
+ .up input {
+   width: 174px;
+   height: 38px;
+   line-height: 38px; /*为兼容ie6*/
+   margin: 0 0 12px;
+   padding: 0 12px;
+   border: 1px solid #f0f1f3;
+ }
+
+ .op-input {
+   display: inline-block;
+   height: 22px;
+   line-height: 22px;
+   vertical-align: middle;
+ }
+
+/*分页*/
+ .page {
+   text-align: center;
+   margin: 20px auto;
+ }
+
+ .page a,
+ .page span {
+   border: 1px solid #c3c3c3;
+   display: inline-block;
+   height: 18px;
+   line-height: 18px;
+   margin: 0 2px 0 1px;
+   padding: 4px 12px;
+   text-align: center;
+   vertical-align: middle;
+   background: #fff;
+ }
+
+ .page a[disabled] {
+   color:#aca899
+ }
+
+ .page a[disabled]:hover {
+   border: 1px solid #c3c3c3;
+   background: #fff;
+   color:#aca899
+ }
+
+ .page a:hover {
+   border: 1px solid #1879e7;
+   background: #1879e7;
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+ /*数字文本框的加、减操作插件*/
+
+ .RIA-reduce,
+ .RIA-add {
+   float: left;
+   width: 22px;
+   height:22px;
+   border-radius: 3px;
+   text-align: center;
+   border: 1px solid #dcdcdc;
+   background: #fff;
+ }
+
+ .RIA-reduce:hover,
+ .RIA-add:hover {
+   border: 1px solid #1f95ef;
+   background: #1f95ef;
+ }
+
+ .RIA-ipt {
+   float: left;
+   margin: 0 3px;
+   border: 1px solid #dcdcdc;
+   border-radius: 3px;
+   border-right: 1px solid #e6e6e6;
+   line-height: 22px;
+   height:22px;
+   width: 60px;
+   text-align: center;
+   color: #f60;
+ }
+
+ .RIA-reduce .iconfont,
+ .RIA-add .iconfont {
+   color:#dcdcdc;
+   font-size: 14px;
+   font-style: normal;
+ }

@@ -1,0 +1,62 @@
+<!-- propsdemo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>props 相关测试</title>
+</head>
+<body>
+<div id="app">
+	<input type="" name="" v-model="MyMessage">
+	<child1 :my-message="MyMessage"></child1>
+	<child2 some-prop="1"></child2>
+	<example :prop-a.sync="MyMessage"></example>
+</div>
+
+<template id="pp">
+	<ul>
+		<li><pre>propA:{{propA | json 4}}</pre></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</template>
+
+	<script src="vue.js"></script>
+	<script>
+	Vue.config.debug = true;
+	Vue.component('child1',{
+		props:['MyMessage'],
+		template:'<span>{{MyMessage}}</span>'
+	})	
+	Vue.component('child2',{
+		props:['someProp'],
+		template:'<span>{{someProp + 1}}</span>'
+	})	
+	Vue.component('example',{
+		template:'#pp',
+		data(){
+			return {
+				test:'sss'
+			}
+		},
+		props:{
+			propA:{
+				type:String,
+				default:function () {
+					return {
+						msg:'hello props a object'
+					}
+				}
+			}
+		}
+	})
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			MyMessage:'dasdasdasd'
+		}
+	})
+	</script>
+</body>
+</html>

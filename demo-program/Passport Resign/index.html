@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>EMS通行证续签</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="EMS通行证续签">
+    <meta name="keywords" content="微信支付,港澳通行证,签注,续签">
+    <meta name="author" content="hawtim,hawtim_zhang@qq.com">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,
+    user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="stylesheets/ems.css">
+</head>
+<body>
+    <div class="no-copy" id="pageContain" >
+        <div class="page page1 current">
+            <div class="contain">
+                <div class="pone">
+                    <i class="logo-wechat lp1"></i>
+                    <i class="title"></i>
+                    <i class="img-main-1"></i>
+                    <i class="ico-arrow-down ad1"></i>
+                </div>
+            </div>
+        </div>
+        <div class="page page2">
+            <div class="contain">
+                <div class="ptwo">
+                    <i class="logo-wechat lp2"></i>
+                    <i class="title"></i>
+                    <!-- getUserSex.appearanceChange -->
+                    <i class="img-main-female" id="sexchange"></i>
+                    <i class="ico-arrow-down ad2"></i>
+                </div>
+            </div>
+        </div>
+        <div class="page page3">
+            <div class="contain">
+                <div class="pthree">
+                    <i class="logo-wechat lp3"></i>
+                    <i class="title" src="img/images-ems/img-title-3.png"></i>
+                    <i class="img-main" src="img/images-ems/img-main-3.png"></i>
+                    <!-- when mousedown and jump to another page -->
+                    <i class="ico-arrow-down ad3"></i>
+                </div>
+            </div>
+        </div>
+        <div class="page page4">
+            <div class="contain">
+                <div class="pfour">
+                    <i class="title"></i>
+                    <i class="img-main"></i>
+                    <div class="ft">
+                        <a class="btn rightnow" href="javascript:;">马上体验</a>
+                        <a class="btn share" href="javascript:;">告诉朋友们</a>
+                        <i class="logo-group"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="no-copy" id="navBar">
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+    </ul>
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="js/fullPage.min.js"></script>
+    <script>
+    var runPage;
+    runPage = new FullPage({
+        id: 'pageContain', // id of contain
+        slideTime: 500, // time of slide
+        continuous: false, // create an infinite feel with no endpoints
+        effect: { // slide effect
+            transform: {
+                translate: 'Y', // 'X'|'Y'|'XY'|'none'
+                scale: [.1,1], // [scalefrom, scaleto]
+                rotate: [0,0] // [rotatefrom, rotateto]
+            },
+            opacity: [0,1] // [opacityfrom, opacityto]
+        },
+        mode: 'wheel,touch,nav:navBar', // mode of fullpage
+        easing: 'ease' // easing('ease','ease-in','ease-in-out' or use cubic-bezier like [.33, 1.81, 1, 1];
+        //  ,onSwipeStart : function(index, thisPage) {   // callback before pageChange
+        //    return 'stop';
+        //  }
+        //  ,beforeChange : function(index, thisPage) {   // callback before pageChange
+        //    return 'stop';
+        //  }
+        //  ,callback : function(index, thisPage) {       // callback when pageChange
+        //    alert(index);
+        //  };
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Shopping list</title>
+</head>
+<body>
+	<h1>What to buy</h1>
+	<p title="a gentle reminder" class="test 131231">Don't forget to buy this stuff</p>
+	<p>this is a test</p>
+	<ul id="purchases">
+		<li class="sales">sdsds</li>
+		<li class="sales">dsddf</li>
+		<li class="sales">sdfdfd</li>
+	</ul>
+	<!-- <script src="../js/example.js"></script> -->
+	<script >
+	var shopping = document.getElementById("purchases");
+	var items = shopping.getElementsByTagName("*")
+	alert(items.length);
+	for(var i = 0;i < items.length;i++){
+		alert(typeof items[i]);
+	}
+	
+	function getElementsByClassName(node,classname){
+		if(node.getElementsByClassName){
+			//使用现有方法
+			return node.getElementsByClassName(classname);
+		}else{
+			var result = new Array();
+			var elems = node.getElementsByTagName("*");
+			for(var i=0;i<elems.length;i++){
+				if(elems[i].className.indexOf(classname) != -1){
+					results[results.length] = elems[i];
+				}
+			}
+			return results;
+		}
+	}
+	// 该函数用于适应新老浏览器以支持getElementsByClassName方法
+	var shopping = document.getElementById("purchases");
+	var sale = getElementsByClassName(shopping,"sales");
+	alert(sale.length);
+	// 谷歌支持ByClassName
+	
+
+	var paras = document.getElementsByTagName("p");
+	for(var i = 0;i < paras.length; i++){
+		var title_text = paras[i].getAttribute("title");
+		if(title_text) alert(title_text);
+	}
+	
+	var shopping = document.getElementById("purchases");
+	alert(shopping.getAttribute("title"));
+	shopping.setAttribute("title","a list of goods");
+	alert(shopping.getAttribute("title"))
+	</script>
+</body>
+</html>

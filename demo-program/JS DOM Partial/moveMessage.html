@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用JavaScript实现动画效果,非抽象版本</title>
+  <style >
+  #message{position: absolute;
+  top:50px;
+  left:100px;
+}
+  </style>
+</head>
+<body>
+<p id="message">Whee!</p>
+
+<!-- js part -->
+<script>
+
+  function positionMessage(){
+    if(!document.getElementById) return false;
+    if(!document.getElementById("message")) return false;
+    var elem = document.getElementById("message");
+    elem.style.position = "absolute";
+    elem.style.top = "100px";
+    elem.style.left = "50px";
+    // 全局变量movement，可以在函数之外的任何地方被取消
+    movement = setTimeout("moveMessage()", 1000);
+    // clearTimeout(movement);
+  }
+
+  function moveMessage(){
+    if(!document.getElementById) return false;
+    if(!document.getElementById("message")) return false;
+    var elem = document.getElementById("message");
+    var xpos = parseInt(elem.style.left);
+    var ypos = parseInt(elem.style.top);
+    // parseInt()函数把elem.style.left = "50px"转换为整数50，把elem.style.top = "100px" 转换为整数100
+    //第一次测试变量xpos和ypos是否到达了目的地的左位置和上位置，如果是则退出函数
+    if(xpos == 200 && ypos ==100){
+      return true;
+    }
+    //如果还没有到达的话，根据message元素的当前位置及其与目的地的关系更新变量xpos和ypos，我们希望能把他们移动到一个距目的坐标更近的地方，如果xpos小于终点的left，给它++
+    if(xpos < 200){
+      xpos++;
+    }
+    if(xpos > 200){
+      xpos--;
+    }
+    if(ypos < 100){
+      ypos++;
+    }
+    if(ypos > 100){
+      ypos--;
+    }
+    elem.style.left = xpos + "px";
+    elem.style.top = ypos + "px";
+    // 设置10ms的函数运行时间间隔
+    movement = setTimeout("moveMessage()", 10);
+    // 实实在在的动画效果可是没什么意义   ================    还是要抽象比较好   ================ //
+  }
+
+
+  function addLoadEvent(func){
+    var oldonload = window.onload;
+    //把现有的window.onload事件处理函数的值存入局部变量oldonload中
+    if(typeof window.onload !='function'){
+      window.onload = func;
+      //如果没有绑定任何函数，就像平时一样添加新函数
+    }else{
+      window.onload = function(){
+      //如果已经绑定，就把新函数追加到现有指令的末尾
+        oldonload();
+        func();
+      }
+    }
+  }
+  addLoadEvent(positionMessage);
+
+  // addLoadEvent(moveMessage);
+  //为了使元素的显示位置不立刻发生变化，我们需要将函数一个接一个执行并且有时间间隔
+  //js的setTimeout能够让某个函数在经过一段预定的时间之后才开始执行
+  //第一个参数是一个字符串，其内容是将要执行的函数的名字，后边的参数是经过多少秒之后才执行第一个参数中的函数
+  // setTimeout(addLoadEvent(moveMessage), 1000)
+  // clearTimeout()取消计时
+  // 
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网易云音乐歌单相似度匹配</title>
+	<style type="text/css">		
+		html {
+			background-color: #f0f0f0;
+			font-size:16px;
+			box-sizing: border-box;
+		}
+			
+		*, *:before, *:after {
+		  box-sizing: inherit;
+		}
+		.wrap {
+			display: flex;
+			width: 980px;
+			/*background-color: rgba(255,255,255,.5);*/
+			border:1px solid #ececec;
+			text-align: left;
+			margin: 0 auto;
+			margin-top: 60px;
+			border-radius: 5px;
+			min-height: 600px;
+			opacity: .8;
+			background: transparent url(./img/logo-lg.png) 0 0 no-repeat;
+			-webkit-background-size: 50%;
+			background-size: 50%;
+		}
+		.wrap p {
+			font-size:16px;
+			
+		}
+		.avatar {
+			padding: 20px;
+			background-color: rgba(255,255,255,.5);
+		}
+		.avatar img {
+			display: block;
+			margin: 0 auto;
+			margin-top: 150px;
+			vertical-align: middle;
+			border-radius: 50%;
+			width: 100px;
+			height: 100px;
+		}
+		.avatar p {
+			margin-left: 30px;
+			text-align:center;
+		}
+		.feedback {
+			padding: 20px;
+			padding-top: 100px;
+			background-color: rgba(255,255,255,.5);
+		}
+		.left {
+			flex:1;
+		}
+		.right {
+			flex:3;	
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="avatar left">
+			<img src="img/avatar.jpg">
+			<p>hawtim_zhang@qq.com</p>
+		</div>
+		<div class="feedback right">
+			<p>这是一款在网易云音乐web端使用的Chrome插件。</p>
+			<p>用来匹配你与其他用户的歌单相似程度。</p>
+			<p>目的很简单：方便各位云村村民找到一个和你一样可爱的人儿</p>
+			<p>灵感来源：某一首歌曲下面的热评。</p>
+			<p>遇到的问题：尝试实现中，在实现过程中遇到很多问题</p>
+			<p>关于产品上的理念：为什么网易云音乐还沒有推出音乐品味相似度这個小功能？<a href="https://www.zhihu.com/question/49307189">知乎链接</a></p>
+			<p>就像last.fm上的compatibility，点进去用戶的首頁会显示彼此的听歌相似度，是否投緣，有哪些共同喜愛的艺术家。</p>
+			<p>希望得到反馈。下来可能会做这个共同的艺术家功能</p>
+			<p>Just enjoy~ 如果有什么意见和建议，欢迎反馈<a href="https://github.com/hawtim/Smi/issues">Issues</a></p>
+		</div>
+	</div>
+</body>
+</html>

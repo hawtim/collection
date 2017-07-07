@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--360浏览器-->
+    <meta name="renderer" content="webkit">
+    <!--其它双核浏览器-->
+    <meta name="force-rendering" content="webkit">
+    <!--如果安装了GCF，则使用GCF来渲染页面，如果没有安装GCF，则使用最高版本的IE内核进行渲染。-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrap justify">
+            <div class="logo dib"></div>
+            <div class="my-shopping dib"><a href="javascript:;">我的购买</a></div>
+        </div>
+    </div>
+    <div class="main wrap">
+        <div class="nav"><span>全部商品</span> &gt; iPhone8-126G-WiFi版-九成新（18）</div>
+        <div class="goods">
+            <div class="goods-t dib-box">
+                <div class="preview dib">
+                    <img src="//images.apple.com/cn/iphone/compare/images/tech_specs_iphone7_large.jpg" alt="" width="340" height="220">
+                </div>
+                <dl class="info dib">
+                    <dt><strong>iPhone8-126G-WiFi版-九成新（18）</strong></dt>
+                    <dd>
+                        <div class="summary">
+                            <dl class="dib-box">
+                                <dt class="dib"><span>价格</span></dt>
+                                <dd class="dib"><span class="price">3880</span><span>元</span></dd>
+                            </dl>
+                            <dl class="dib-box">
+                                <dt class="dib">数量</dt>
+                                <dd class="dib">
+                                  <span class="op-input" id="ipt1"></span>
+                               </dd>
+                            </dl>
+                        </div>
+                        <a href="javascript:;" class="btn">购买</a>
+                        <input type="button" value="购买" class="btn">
+                        <dd>
+                </dl>
+            </div>
+            <div class="goods-b">
+                <div class="tab dib-box">
+                    <div class="item dib active">商品介绍</div>
+                    <div class="item dib">规则及说明</div>
+                </div>
+                <div class="detail">
+                  <div>
+                    裸机，无充电套装,外观有明显磕碰，经换屏维修,不影响正常使用，5~6成新。
+                  </div>
+                  <div style="display:none">
+                    1)下单后不可取消，订购费用从当月工资中扣除。<br>
+                    2)当天17：00前购买，17：30后由助理统一派送；17：00后购买，次日17：30后派送。<br>
+                    3)成都公司的订单，每周一统一邮寄上周订购的商品，到货后由成都助理代发。<br>
+                    4)系统暂无自动通知功能，为确保商品尽快送达，下单后请联系行政，谢谢！
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//image.duoyi.com/js/jquery-1.12.4.min.js"></script>
+    <script>
+
+    (function (fn) {
+        if (typeof define === 'function' && define.amd) {
+            define(['jquery'], function ($) {
+                return fn($);
+            });
+        }
+        else {
+            window.numberInput = fn($);
+        }
+    })(function ($) {
+        var numberInput;
+        var defaults;
+        defaults = {
+            selector: '',
+            inputClass: 'RIA-ipt',
+            reduceClass: 'RIA-reduce',
+            addClass: 'RIA-add',
+            max: false,
+            min: 1,
+            num: 1,
+            decimal: 0,
+            blurFilter: true
+        };
+        numberInput = function (opts) {
+            return new numberInput.fn.init(opts);
+        };
+        numberInput.fn = numberInput.prototype = {
+            init: function (opts) {
+                this.opts = $.extend(true, {}, defaults, opts);
+                if (!this.opts.selector) {
+                    return;
+                }
+                this.$ele = $(this.opts.selector);
+                this.decimal = this.getDecimal(this.opts.decimal);
+                this.buildHtml();
+                this.$reduce = this.$ele.find('.' + this.opts.reduceClass);
+                this.$add = this.$ele.find('.' + this.opts.addClass);
+                this.$input = this.$ele.find('.' + this.opts.inputClass);
+                this.bindEvent();
+            },
+            bindEvent: function () {
+                var _this = this;
+                this.$add.on('click', function () {
+                    _this.add();
+                });
+                this.$reduce.on('click', function () {
+                    _this.reduce();
+                });
+                if (this.opts.blurFilter) {
+                    this.$input.on('blur', function () {
+                        var $this = $(this);
+                        var val = $this.val().replace(/[^\d|\.]*/g, '');
+                        $this.val(val);
+                    });
+                }
+            },
+            getDecimal: function (decimal) {
+                var i = 0;
+                var d = '';
+                decimal = decimal || 0;
+                if (decimal === 0) {
+                    return 1;
+                }
+                for (; i < decimal; i++) {
+                    d += '0';
+                }
+                return 1 + d;
+            },
+            add: function (n) {
+                var val = this.filter();
+                var decimal = 1;
+                if (val.indexOf('.') !== -1) {
+                    decimal = this.decimal;
+                }
+                n = (n || 1) / decimal;
+                val = Math.round.call(null, val * decimal) / decimal + n;
+                if (this.opts.max !== false && val > this.opts.max) {
+                    return;
+                }
+                if (decimal !== 1) {
+                    val = val.toFixed(this.opts.decimal);
+                }
+                this.$input.val(val);
+            },
+            reduce: function (n) {
+                var val = this.filter();
+                var decimal = 1;
+                if (val.indexOf('.') !== -1) {
+                    decimal = this.decimal;
+                }
+                n = (n || 1) / decimal;
+                val = Math.round.call(null, val * decimal) / decimal - n;
+                if (this.opts.min !== false && val < this.opts.min) {
+                    return;
+                }
+                if (decimal !== 1) {
+                    val = val.toFixed(this.opts.decimal);
+                }
+                this.$input.val(val);
+            },
+            filter: function () {
+                var val = this.$input.val().replace(/[^\d|\.]*/g, '');
+                val = val || 0;
+                return val;
+            },
+            buildHtml: function () {
+                var opts = this.opts;
+                var html = [
+                    '<a class="' + this.opts.reduceClass + '" href="javascript:;"><i class="iconfont">-</i></a>',
+                    '<input class="' + this.opts.inputClass + '" type="text" value="' + this.opts.num + '">',
+                    '<a class="' + this.opts.addClass + '" href="javascript:;"><i class="iconfont">+</i></a>'
+                ];
+                this.$ele.html(html.join(''));
+            }
+        };
+        numberInput.fn.init.prototype = numberInput.prototype;
+        return numberInput;
+    });
+    
+    $(function(){
+      $(".tab .item").click(function(){
+          $(this).addClass("active").siblings().removeClass("active");
+          var index = $(".tab .item").index(this);
+          $(".detail>div").eq(index).show().siblings().hide();
+      });
+  		numberInput({selector: '#ipt1'});
+  	});
+    </script>
+</body>
+</html>

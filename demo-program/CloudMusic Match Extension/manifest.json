@@ -1,0 +1,35 @@
+{
+  "homepage_url": "https://github.com/hawtim/Smi",
+  "manifest_version": 2,
+  "name": "Smi",
+  "description": "A plugin which provide you a new way to know CloudMusic's friends  ————提供给你全新的方式来认识网易云音乐上的朋友",
+  "version": "1.0.0",
+  "icons": {
+  	"16": "img/smi16.png",
+  	"48": "img/smi48.png",
+    "128": "img/smi128.png"
+  },
+  "permissions": [
+    "*://music.163.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "js/main.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": {
+      "128": "img/smi128.png"
+    },
+    "default_title": "网易云音乐匹配歌单相似度",
+    "default_popup": "popup.html"
+  },
+  "options_page": "index.html",
+  "content_scripts": [
+    {
+      "matches": ["*://music.163.com/*"],
+      "js": ["js/Smi.js"]
+    }
+  ]
+}

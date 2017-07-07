@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Web design</title>
+	<style>
+	#slideshow {
+		position: relative;
+		width: 241px;
+		height: 410px;
+		overflow:hidden;
+	}
+	#preview {
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+	<h1>Web Design</h1>
+	<p>These are the things you should know</p>
+	<ol id="linklist">
+		<li><a href="structure.html">Structure</a></li>
+		<li><a href="presentation.html">Presentation</a></li>
+		<li><a href="behavior.html">Behavior</a></li>
+	</ol>
+	<!-- <div id="slideshow">
+		<img src="./img/topics.jpg" alt="building blocks of web design" id="preview" />
+	</div> -->
+	<div class="additional">
+		<p>为它增加一种视觉提示效果会让这个网页更有吸引力</p>
+		<p>让鼠标悬停在某个链接上时，把topics.jpg图片中与之对应的那个部分显示出来，这是一种行为上的变化：用js和dom来实现再好不过了</p>
+		<p>这份文档的结构层，表现层，行为层已经分离的更加彻底了，如果禁用了js，动画功能将通过动画效果向用户提供一些赏心悦目的视觉反馈，如果没有启用就js，动画功能将按照我们安排的平稳退化保持静默，不影响浏览体验</p>
+		<p>从技术上讲，实现动画不难，关键是，应不应该使用动画</p>
+		<p>现在我们有了平滑的动画效果和平稳退化，最终结果证明我们付出的努力是非常值得的，我们现在有了一个通用性的函数。</p>
+	</div>
+	<script src="js/addLoadEvent.js"></script>
+	<script src="js/insertAfter.js"></script>
+	<script src="js/moveElement.js"></script>
+	<script src="js/prepareSlideshow.js"></script>
+</body>
+</html>

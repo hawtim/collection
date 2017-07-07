@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Message抽象版本</title>
+	<style>
+	.w3c-suggestion{
+		position: absolute;
+		left:50px;
+		top:200px;
+	}
+	</style>
+</head>
+<body>
+	<p id="message">Whee!</p>
+	<p id="message2">Whoa!</p>
+
+	<div class="w3c-suggestion">
+		<p>网页上的动画元素容易引起访问者的反感，还容易导致各种各样的访问性问题</p>
+		<p>w3c的内容可访问性指南建议，除非浏览器允许用户冻结移动的内容，否则就应该避免让内容在页面中移动</p>
+		<p>如果页面中有移动的内容，那么应该用脚本或者插件的机制允许用户冻结这种移动或动态更新的行为</p>
+	</div>
+	<script src="js/addLoadEvent.js"></script>
+	<script src="js/moveElement.js"></script>
+	<script src="js/positionMessage.js"></script>
+</body>
+</html>

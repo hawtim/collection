@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Example</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/normalize.css">
+	
+	<link rel="stylesheet" type="text/css" href="./stylesheet/index.css">
+	<script>
+	window.onload = function(){
+		var para = document.getElementById("example");
+		alert(typeof para.nodeType);
+		// 返回string因为节点名字是一个字符串
+		alert("The color is " + para.style.color);
+		// 返回object因为style属性是一个对象
+		alert("The font-family is " + para.style.fontFamily);
+	}
+	</script>
+</head>
+<body>
+	<p id="example" style="color:#999999; font-family:'Arial', sans-serif;">
+		An example of a paragraph
+	</p>
+</body>
+</html>

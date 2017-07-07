@@ -1,0 +1,52 @@
+/*
+Error: Invalid CSS after "	color:": expected expression (e.g. 1px, bold), was "}"
+        on line 27 of K:\web\web-program\olddivtest\sass\main.scss
+
+22: 	display: inline-block;
+23: }
+24: a{
+25: 	text-decoration: none;
+26: 	color: 
+27: }
+28: .fr{
+29: 	float: right;
+30: }
+31: .fl{
+32: 	float: left;
+
+Backtrace:
+K:\web\web-program\olddivtest\sass\main.scss:27
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1165:in `expected'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/lexer.rb:220:in `expected!'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/parser.rb:573:in `assert_expr'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/parser.rb:62:in `parse'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1027:in `sass_script'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:880:in `value!'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:753:in `block in try_declaration'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1141:in `call'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:1141:in `rethrow'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:766:in `try_declaration'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:696:in `declaration_or_ruleset'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:661:in `block_child'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:653:in `block_contents'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:642:in `block'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:635:in `ruleset'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:660:in `block_child'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:653:in `block_contents'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:117:in `stylesheet'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/scss/parser.rb:42:in `parse'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:393:in `_to_tree'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+H:/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+H:/Koala/rubygems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+H:/Koala/bin/sass:18:in `load'
+H:/Koala/bin/sass:18:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"	color:\": expected expression (e.g. 1px, bold), was \"}\"\A         on line 27 of K:\web\web-program\olddivtest\sass\main.scss\A \A 22: 	display: inline-block;\A 23: }\A 24: a{\A 25: 	text-decoration: none;\A 26: 	color: \A 27: }\A 28: .fr{\A 29: 	float: right;\A 30: }\A 31: .fl{\A 32: 	float: left;"; }

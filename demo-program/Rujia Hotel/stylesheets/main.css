@@ -1,0 +1,281 @@
+@charset "UTF-8";
+/*!===酒店Demo scss文件===*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+/*！====以上是rest样式======*/
+/*=================公用资源=============*/
+.cf {
+  zoom: 1; }
+
+.cf:after {
+  clear: both;
+  content: " ";
+  display: block; }
+
+.w960 {
+  margin: 0 auto;
+  width: 960px; }
+
+ul,
+li {
+  list-style: none; }
+
+img {
+  border: 0; }
+
+.no-copy {
+  -khtml-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.text-copy {
+  -webkit-user-select: text;
+  user-select: text; }
+
+::selection {
+  background-color: pink;
+  color: #fff; }
+
+::-moz-selection {
+  background-color: pink;
+  color: #fff; }
+
+::-webkit-selection {
+  background-color: pink;
+  color: #fff; }
+
+/*=============文档自带样式=============*/
+html {
+  font-family: "微软雅黑";
+  font-size: 10px;
+  font-weight: bold; }
+
+body {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-width: 1080px;
+  background: #e8e3dc;
+  font-size: 16px; }
+
+.hd {
+  height: auto; }
+  .hd .logo-wepay {
+    position: relative;
+    top: 20px;
+    left: 135px;
+    z-index: 999;
+    display: block;
+    width: 150px;
+    height: 41px;
+    background: url(../img/images-rujia/icons.png) no-repeat;
+    background-position: -88px 0;
+    height: 41px;
+    width: 150px; }
+  .hd .banner {
+    position: relative;
+    top: -41px;
+    left: 0;
+    width: 100%;
+    max-height: 717px;
+    z-index: 1; }
+
+.bd {
+  height: 1075px;
+  margin-top: -41px;
+  background: #e8e3dc; }
+  .bd .detail,
+  .bd .tips {
+    display: block;
+    text-align: center; }
+  .bd .detail {
+    margin-bottom: 42px;
+    color: #a89880;
+    font-size: 21px; }
+  .bd .qrcode {
+    display: block;
+    width: 336px;
+    height: 334px;
+    margin: 0 auto; }
+  .bd .tips {
+    margin-top: 31px;
+    color: #f06a42;
+    font-size: 25px; }
+  .bd .process {
+    position: relative; }
+    .bd .process h2 {
+      margin-top: 62px;
+      font-size: 33.89px;
+      /* margin-top: 64px!important;margin-bottom: 36px!important; */
+      color: #f06a42; }
+    .bd .process .ico-arrow-down {
+      position: relative;
+      top: -29px;
+      left: 200px;
+      display: block;
+      height: 29px;
+      width: 32px;
+      margin-left: 13px;
+      margin-top: 0;
+      background: url(../img/images-rujia/icons.png) no-repeat;
+      background-position: -20px 0;
+      height: 29px;
+      width: 32px; }
+    .bd .process img {
+      float: left; }
+    .bd .process .step {
+      margin-top: 9px; }
+    .bd .process [class*="step"] {
+      display: inline-block; }
+    .bd .process .step-1 {
+      margin-left: 22px;
+      margin-right: 65px;
+      background: url(../img/images-rujia/icons.png) no-repeat;
+      background-position: -197px -64px;
+      height: 328px;
+      width: 183px; }
+    .bd .process .step-2,
+    .bd .process .step-3 {
+      margin-right: 60px; }
+    .bd .process .step-2 {
+      background: url(../img/images-rujia/icons.png) no-repeat;
+      background-position: 0 -406px;
+      height: 328px;
+      width: 183px; }
+    .bd .process .step-3 {
+      background: url(../img/images-rujia/icons.png) no-repeat;
+      background-position: -197px -410px;
+      height: 328px;
+      width: 183px; }
+    .bd .process .step-4 {
+      background: url(../img/images-rujia/icons.png) no-repeat;
+      background-position: 0 -62px;
+      height: 328px;
+      width: 183px; }
+    .bd .process .ls-md {
+      display: block;
+      width: 36px;
+      -moz-border-radius: 18px;
+      -webkit-border-radius: 18px;
+      border-radius: 18px;
+      height: 36px;
+      margin: 0 auto;
+      color: #e8e3dc;
+      line-height: 36px;
+      font-size: 25px;
+      text-align: center;
+      background: #f06a42; }
+    .bd .process p {
+      *display: inline;
+      zoom: 1;
+      display: inline-block;
+      margin-top: 24px;
+      color: #f06a42;
+      font-size: 18px;
+      /* font-family:'HiraginoSansGB'; */
+      line-height: 24px;
+      text-align: center; }
+    .bd .process .show-1 {
+      width: 130px;
+      margin-left: 50px; }
+    .bd .process .show-2 {
+      width: 115px;
+      margin-left: 120px; }
+    .bd .process .show-3 {
+      width: 115px;
+      margin-left: 126px; }
+    .bd .process .show-4 {
+      width: 80px;
+      margin-left: 151px; }
+
+.ft {
+  background: #383c5c;
+  height: auto; }
+  .ft .border {
+    display: block;
+    width: 100%;
+    height: 17px;
+    background: transparent url(../img/images-rujia/img-border.png) 0 0 repeat;
+    border: 0; }
+  .ft h2 {
+    padding-top: 44px;
+    color: #8f94be;
+    font-size: 33.89px; }
+  .ft ul {
+    width: 960px;
+    height: auto;
+    margin-top: 0px; }
+  .ft p {
+    margin-top: 2px;
+    margin-left: 38px;
+    font-size: 15px;
+    /* text-indent:-20px; */
+    line-height: 18px;
+    font-weight: normal;
+    color: #8f94be; }
+  .ft .ls-sm {
+    position: relative;
+    top: 21px;
+    left: 8px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: #383c5c;
+    font-size: 15px;
+    font-weight: normal;
+    text-align: center;
+    background: #095fd3;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%; }
+  .ft .fix {
+    padding-bottom: 62px; }
