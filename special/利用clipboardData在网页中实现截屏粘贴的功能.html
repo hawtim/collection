@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>利用clipboardData在网页中实现截屏粘贴的功能</title>
+    <style type="text/css">
+        .box {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #ddd;
+        }
+
+        .box img {
+            max-width: 480px;
+            max-height: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" contenteditable="true" id="testInput">
+    </div>
+    <script type="text/javascript">
+
+            let imgReader = (item) => {
+                let blob = item.getAsFile()
+                let reader = new FileReader()
+                reader.onload = (e) => {
+                    let img = new Image()
+                    img.src = e.target.result
+                    document.getElementById('testInput').appendChild(img)
+                }
+                reader.readAsDataURL(blob)
+            };
+
+            el.onpaste= (e) => {
+                // window.clipboardData.getData("Text") ie下获取黏贴的内容
+                // e.clipboardData.getData("text/plain") 火狐谷歌下获取黏贴的内容
+                // alert(e.clipboardData.getData("text/plain") )
+                let clipboardData = e.clipboardData
+                let items
+                let item
+                let types
+                if (clipboardData) {
+                    items = clipboardData.items;
+                    if (!items) {
+                        return
+                    }
+                    item = items[0]
+                    types = clipboardData.types || []
+                    for (var i = 0; i < types.length; i++) {
+                        if (types[i] === 'Files') {
+                            item = items[i]
+                            break
+                        }
+                    }
+                    if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
+                        imgReader(item)
+                    }
+                }
+            }
+    </script>
+
+
+    </script>
+
+</body>
+
+</html>
