@@ -7,7 +7,9 @@
     "vue-occupy": "0.0.8",
     "vuedraggable": "2.10.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "puppeteer": "0.13.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
