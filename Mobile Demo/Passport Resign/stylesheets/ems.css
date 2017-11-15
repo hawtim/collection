@@ -1,0 +1,482 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+/*！====以上是rest样式======*/
+/*!==============框架自带样式开始================ */
+#pageContain {
+  overflow: hidden; }
+
+.page {
+  display: none;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+.contain {
+  display: none;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 0; }
+
+.current .contain,
+.slide .contain {
+  display: block; }
+
+.current {
+  display: block;
+  z-index: 1; }
+
+.slide {
+  display: block;
+  z-index: 2; }
+
+.swipe {
+  display: block;
+  -webkit-transition-duration: 0ms !important;
+  transition-duration: 0ms !important;
+  z-index: 3; }
+
+.page1 {
+  background: #0da147; }
+
+.page2 {
+  background: #ee9377; }
+
+.page3 {
+  background: #d06f02; }
+
+.page4 {
+  background: #134d9b; }
+
+.page5 {
+  background: #0f0; }
+
+.page6 {
+  background: #2ff; }
+
+#navBar {
+  position: absolute;
+  right: 3%;
+  top: 40%;
+  z-index: 3; }
+
+#navBar .active {
+  background: #ccc; }
+
+#navBar li {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  line-height: 10px;
+  text-align: center;
+  border-radius: 50%;
+  transition: all .7s ease; }
+
+p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -100px;
+  color: #fff;
+  opacity: 1;
+  text-align: center;
+  transform-origin: 50% 50%;
+  transition: all .8s ease; }
+
+.step1 a {
+  opacity: 1;
+  -webkit-transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
+  transition: all 1s ease-in-out; }
+
+.step2 a {
+  opacity: 1;
+  -webkit-transform: scale(2);
+  transform: scale(2);
+  transition: all .8s ease; }
+
+.step3 a {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1); }
+
+.step4 a {
+  opacity: 1;
+  -webkit-transform: rotate(360deg) translate(0, -200px) scale(0.3);
+  transform: rotate(360deg) translate(0, -200px) scale(0.3); }
+
+/*! ============== 框架自带样式结束================ */
+/*=================公用资源=============*/
+.clearfix {
+  zoom: 1; }
+
+.clearfix:after {
+  clear: both;
+  content: "";
+  display: block; }
+
+.no-copy {
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none; }
+
+a {
+  color: #fff;
+  display: block;
+  height: 3.7rem;
+  line-height: 3.7rem;
+  text-align: center;
+  text-decoration: none; }
+
+.logo-wechat {
+  display: block;
+  width: 6.95rem;
+  height: 2.25rem;
+  background: url(../img/images.png) no-repeat;
+  background-size: 34rem 7.7rem;
+  background-position: 0 -2.5rem;
+  height: 2.2rem;
+  width: 7rem; }
+
+.lp1,
+.lp2,
+.lp3 {
+  position: relative;
+  top: 1.25rem;
+  left: 1.05rem; }
+
+.btn {
+  position: absolute;
+  top: 1.15rem;
+  font-size: 1.5rem;
+  width: 44.53%;
+  height: 3.7rem;
+  -moz-border-radius: 0.75rem;
+  -webkit-border-radius: 0.75rem;
+  border-radius: 0.75rem; }
+
+.ico-arrow-down {
+  bottom: 0.5rem;
+  display: block;
+  height: 2.1rem;
+  left: auto;
+  margin: 0 auto;
+  position: relative;
+  width: 3.8rem;
+  -moz-animation: showdown 1.5s linear infinite;
+  -webkit-animation: showdown 1.5s linear infinite;
+  animation: showdown 1.5s linear infinite;
+  background: url(../img/images.png) no-repeat;
+  background-size: 34rem 7.7rem;
+  background-position: 0 0;
+  height: 2.1rem;
+  width: 3.8rem; }
+
+.ad1,
+.ad2,
+.ad3 {
+  position: absolute;
+  left: 50%;
+  margin-left: -1.9rem;
+  opacity: .2;
+  bottom: 7.4%; }
+
+img {
+  outline: none; }
+
+/*!================动画样式==================== */
+/*!========位置变化动画=====*/
+@-webkit-keyframes translateX {
+  0% {
+    opacity: .5;
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); }
+  50% {
+    opacity: .8;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%); } }
+@-webkit-keyframes showdown {
+  0% {
+    opacity: .5;
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%); }
+  50% {
+    opacity: .8;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%); } }
+/*=============文档自带样式=============*/
+html {
+  font-family: "Helvetica";
+  font-size: 10px;
+  -ms-touch-action: none;
+  /* 阻止windows Phone 的默认触摸事件 */ }
+
+body {
+  *cursor: default;
+  background-color: #fff;
+  font-family: Helvetica;
+  font-size: 1.6rem;
+  overflow: hidden;
+  width: 100%; }
+
+[class*="title"] {
+  position: relative;
+  display: block;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: url(../img/img-titles.png) no-repeat;
+  background-size: 50.8rem 39.7rem;
+  z-index: 999; }
+
+[class*="img-main"] {
+  display: block;
+  background: url(../img/img-mains.png) no-repeat;
+  background-size: 62.5rem 53.4rem; }
+
+.pone,
+.ptwo,
+.pthree,
+.pfour {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: 50px 50px; }
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto; }
+
+.pone {
+  width: 100%;
+  background: #0da147 url(../img/img-bg-dot-1.jpg) 0 0 repeat; }
+  .pone .title {
+    top: 3.2rem;
+    width: 21.45rem;
+    height: 39.7rem;
+    height: 39.7rem;
+    width: 21.4rem;
+    background-position: 0 0;
+    /* margin-left: 11.0*.5rem; */ }
+  .pone .img-main-1 {
+    position: absolute;
+    top: 18.25rem;
+    left: 50%;
+    width: 29.15rem;
+    height: 23.55rem;
+    height: 23.5rem;
+    width: 29.1rem;
+    background-position: 0 -25rem;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+
+.ptwo {
+  /* height: 113.6*.5rem; */
+  background: #ff9d80 url(../img/img-bg-dot-2.jpg) 0 0 repeat; }
+  .ptwo .title {
+    width: 25.95rem;
+    height: 14.2rem;
+    margin-top: 0.65rem;
+    height: 14.2rem;
+    width: 25.9rem;
+    background-position: -23.1rem -8.4rem; }
+  .ptwo .img-main-female {
+    position: absolute;
+    top: 18.4rem;
+    left: .5rem;
+    width: 100%;
+    height: auto;
+    height: 21.4rem;
+    width: 31.5rem;
+    background-position: -30.5rem 0; }
+
+.pthree {
+  /* height: 113.6*.5rem; */
+  background: #e97c03 url(../img/img-bg-dot-3.jpg) 0 0 repeat; }
+  .pthree .title {
+    width: 28.95rem;
+    height: 16.1rem;
+    margin-top: -0.05rem;
+    left: 0;
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    height: 16.1rem;
+    width: 28.9rem;
+    background-position: -21.8rem -22.9rem; }
+  .pthree .img-main {
+    position: relative;
+    top: -0.5rem;
+    left: 4.2rem;
+    width: 22.15rem;
+    height: 23.75rem;
+    height: 23.7rem;
+    width: 22.1rem;
+    background-position: -3.5rem 0; }
+
+.pfour {
+  background: #1553a7 url(../img/img-bg-dot-4.jpg) 0 0 repeat; }
+  .pfour .title {
+    width: 23.9rem;
+    height: 8.2rem;
+    margin-top: 1.6rem;
+    height: 8.2rem;
+    width: 23.9rem;
+    background-position: -23.3rem 0; }
+  .pfour .img-main {
+    position: absolute;
+    right: -.1rem;
+    bottom: 0;
+    margin-bottom: 10.4rem;
+    width: 100%;
+    height: auto;
+    height: 30.8rem;
+    width: 32rem;
+    background-position: -30.5rem -22.6rem; }
+  .pfour .ft {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    height: 10.5rem;
+    background: #fff; }
+  .pfour .rightnow {
+    left: 1.2rem;
+    background: #1450a2;
+    /* margin-right: 2.4*.5rem; */ }
+  .pfour .share {
+    right: 1.2rem;
+    background: #f08003; }
+  .pfour .logo-group {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 28.1rem;
+    height: 2.25rem;
+    margin-left: 1.95rem;
+    margin-top: 6.05rem;
+    background: url(../img/images.png) no-repeat;
+    background-size: 34rem 7.7rem;
+    background-position: 0 -5.4rem;
+    height: 2.2rem;
+    width: 28.1rem; }
+
+/*！ ============媒介查询语句========= */
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 10px; } }
+@media screen and (min-width: 360px) and (max-width: 374px) {
+  html {
+    font-size: 11.72875px; } }
+@media screen and (min-width: 375px) and (max-width: 383px) {
+  html {
+    font-size: 12px; } }
+@media screen and (min-width: 384px) and (max-width: 399px) {
+  html {
+    font-size: 12.5px; } }
+@media screen and (min-width: 400px) and (max-width: 413px) {
+  html {
+    font-size: 12.9375px; } }
+@media screen and (min-width: 414px) and (max-width: 423px) {
+  html {
+    font-size: 13.5px; } }
+@media screen and (min-width: 424px) and (max-width: 479px) {
+  html {
+    font-size: 15px; } }
+@media screen and (min-width: 480px) and (max-width: 539px) {
+  html {
+    font-size: 16.875px; } }
+@media screen and (min-width: 540px) and (max-width: 599px) {
+  html {
+    font-size: 18.75px; } }
+@media screen and (min-width: 600px) and (max-width: 639px) {
+  html {
+    font-size: 20px; } }
+@media screen and (min-width: 640px) and (max-width: 719px) {
+  html {
+    font-size: 22.5px; } }
+@media screen and (min-width: 720px) {
+  html {
+    font-size: 25px; } }

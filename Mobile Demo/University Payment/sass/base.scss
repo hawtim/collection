@@ -1,0 +1,465 @@
+// 校园卡页面项目scss文件
+/*！====reset样式====== */
+@charset "utf-8";
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/utilities/sprites";
+
+@mixin images-ucard {
+    background: url(../img/images-ucard.png) no-repeat;
+    background-size: 23.05rem 14.9rem;
+}
+@mixin ico-name {
+    background-position: 0 0;
+    height: 2.35rem;
+    width: 1.90rem;
+}
+@mixin ico-tick {
+    background-position: -3.5rem 0;
+    height: 1.6rem;
+    width: 2.1rem;
+}
+@mixin ico-card {
+    background-position: -6.95rem 0;
+    height: 1.65rem;
+    width: 2.45rem;
+}
+@mixin ico-money {
+    background-position: -10.3rem 0;
+    height: 2.25rem;
+    width: 2.5rem;
+}
+@mixin ico-mtm {
+    background-position: 0 -2.5rem;
+    height: 12.4rem;
+    width: 23.0rem;
+}
+
+/*=================公用资源=============*/
+.clearfix {
+    zoom: 1;
+}
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+a,
+a:link {
+    text-decoration: none;
+}
+.css {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-modify: read-write-plaintext-only;
+    -webkit-user-select: none;
+}
+/*!====================组件模块 ========================*/
+// 向右箭头ico
+.ico-arrow-right {
+    position: absolute;
+    right: 1.5rem;
+    top: 2.15-0.7rem;
+    height: 1.4rem;
+    width: 0.9rem;
+    background: transparent url(../img/ico-arrow-right.png) 0 0 no-repeat;
+    background-size: 0.9rem auto;
+}
+// 名字ico
+.name {
+    position: relative;
+    top: 0.95rem;
+    left: 1.8rem;
+    display: inline-block;
+    margin-bottom: 1.05-0.5rem;/* margin: 0.95rem 2.4rem 1.05rem 1.8rem; */
+    z-index: 3;
+    @include images-ucard;
+    @include ico-name;
+}
+// 卡号ico
+.id {
+    position: relative;
+    top: 2.6rem;
+    left: 1.6rem;
+    display: block;
+    margin: 0 0 1.4+0.55rem 0;
+    z-index: 3;
+    @include images-ucard;
+    @include ico-card;
+}
+.hl-v {
+    position: absolute;
+    right: 0;
+    top: 4.3rem;
+    height: 0.1rem;
+    width: 96%;
+    background: #dededc;
+    z-index: 999;
+}
+// 表单
+form {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: auto;
+}
+/*！====span+select下拉框复用样式开始=== */ 
+.form-2 {
+    position: relative;
+    .money {
+        position: relative;
+        top: 0;
+        left: 1.6rem;
+        display: inline-block;
+        margin-top: 0.95rem;
+        margin-bottom: 0.85rem;
+        @include images-ucard;
+        @include ico-money;
+    }
+    .select-money{
+        position: absolute;
+        top: 1.4rem;
+        left: 6rem;
+        // display: block;
+        width: 73.75%;
+        height: 3.6*0.5rem;
+        line-height: 3.6*0.5rem;
+    }
+    span, select{
+        position: absolute;
+        border: 0;
+        width: 73.75%;
+        height: 3.6*0.5rem;
+        line-height: 3.6*0.5rem;
+        font-size: 1.5rem;
+    }
+    span{
+        top: 0;
+        left: 0;
+        // display: inline-block;
+        z-index: 999;
+        color:#C7C7CD;
+        background: #fff;
+    }
+    select {
+        position: relative;
+        top: 0rem;
+        left: 0;
+        z-index: 1;
+    }
+}
+/*！====span+select下拉框复用样式结束== */
+// 输入框公共样式
+.ip{
+    position: relative;
+    width: 73.75%;
+    height: 3.6*0.5rem;
+    font-size: 3.0*0.5rem;
+    line-height: 3.6*0.5rem;
+    border:0;
+    }
+// 提示和确认按钮公共样式
+.ft {
+    position: relative;
+    width: 100%;
+    height: auto;
+    .tips {
+        display: block;
+        margin-left: 1.9*0.5rem;
+        margin-top: 1.5*0.5rem;
+        font-size: 2.2*0.5rem;
+        color: #808080;
+    }
+    .btn {
+    display: block;
+    width: 92.75%;
+    height: 8.4*0.5rem;
+    margin: 0 auto;
+    margin-top: 6.0*0.5rem;
+    color: #fff;
+    background: #04be02;
+    font-size: 3.6*0.5rem;
+    font-weight: normal!important;
+    line-height: 8.4*0.5rem;
+    text-align: center;
+    @include border-radius(0.9*0.5rem);
+    }
+}
+
+// 获得焦点时没有外部框线
+:focus {
+    outline: none;
+    // outline: 1px dashed blue;
+    // @include transition(all 0.5s linear);
+}
+
+/*=============文档自带样式=============*/
+html {
+    font-size: 10px;
+}
+body {
+    background: #eeeef3;
+    font-family: Helvetica;
+    font-size: 1.6rem;
+}
+//不同页面共用一个样式表时，有些页面有相似的部分在复用的时候直接重写不同的地方进行样式覆盖
+// ===============index.html============//
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background: #eeeef3;
+    overflow-x: hidden;
+}
+.hd {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    width: 100%;
+    margin-top: 3.1*0.5rem;
+    border: 0.1*0.5rem solid #dededc;
+    background-color: #fff;
+    // .inputname, .inputid{position: absolute;left:5rem;z-index: 4;font-size: 1.5rem;left: 73.75%;height: 1.8rem;line-height: 1.8rem;  }
+    // .inputname{top: 2.5*0.5rem;}
+    // .name::after{content:"";position: absolute;z-index:999;top: 4.3rem;right:0;width: 96%;height: .1rem;background: #DEDEDC ;}
+    .ipname {
+        top: 1.2rem;
+        left: 12.0*0.5-1.8-2.45+1.9rem;
+        height: 3.6*0.5rem;
+    }
+    // .inputid{top: 11.0*0.5rem;}
+    .ipid {
+        top: -1rem;/* top: 0.8rem; */
+        left: 12.0*0.5rem;
+    }
+}
+
+.bd {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 4.0*0.5rem;
+    background: #fff;
+    border: 0.1*0.5rem solid #dededc;
+     .alert {
+        position: absolute;
+        top: -1.6rem;
+        left: 0.95rem;
+        color: #dd4040;
+        font-size: 1.1rem;
+    }
+}
+
+// ==================confirm.html=====================//
+.hd-c {
+    width: 100%;
+    height: 4.3rem;
+    a {
+        display: block;
+        width: 32-6rem;
+        height: 4.3rem;
+        margin-left: 6rem;
+        margin-top: -4.3+1.2rem;
+        color: #000;/* position: relative;top:-3.4+1.4+0.6rem; */
+        font-size: 1.5rem;
+        line-height: 4.3rem;
+        .username {
+            margin: 0;
+        }
+        .userid {
+            margin-left: 3.2rem;
+        }
+    }
+}
+.bd-c {
+    position: relative;
+    // .money{position: relative;top:0.95rem;left:1.6rem;display: block;@include images-ucard; @include ico-money;}
+    // select{position: absolute;top:2.3*0.5rem;left: 5.8rem;width:73.75%;font-size:1.5rem;height:3.6*0.5rem;line-height:3.6*0.5rem;border-left:0;border-top:0;border-right:0;border-bottom:.1*0.5rem;}
+}
+// ================list.html===============//
+.wrapper-l {
+    margin-top: 1.5rem;
+}
+.bd-l {
+    height: auto;//覆盖mt2rem的样式
+    margin-top: 0;
+    .history {
+        position: relative;
+        width: 100%;
+        height: auto;
+        a:nth-of-type(1)::after, a:nth-of-type(2)::after {
+            position: relative;
+            right: 0;
+            top: 1.25rem;
+            z-index: 999;
+            content: " ";
+            display: block;
+            width: 96%;
+            height: 0.1rem;
+            background: #dededc;
+        }
+        a:nth-last-child(1)::after{display: none;}
+        a {
+            display: block;
+            width: 100%;
+            padding-bottom: 1.2rem;
+            padding-left: 1.6rem;
+            padding-top: 1.2rem;
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: bold;
+            line-height: 1.6rem;
+            span {
+                display: block;
+                padding-top: 0.8rem;
+                color: #808080;
+                font-size: 1.4rem;
+                font-weight: normal;
+                line-height: 1.4rem;
+            }
+        }
+    }
+}
+.ft-l {
+    position: relative;
+    width: 100%;
+    margin-top: 1.5rem;
+    background: #fff;
+    border: 0.1*0.5rem solid #dededc;
+    a {
+        display: block;
+        width: 100%;
+        height: 4.3rem;
+        padding-left: 1.6rem;
+        font-size: 1.6rem;
+        font-weight: bold;
+        line-height: 4.3rem;
+        color: #000;
+    }
+    // .ico-arrow-right{display: block;width: 0.9rem;height: 1.4rem;
+    //  position: relative;top:0rem;right:1.5rem;
+    //  background: transparent url(../img/ico-arrow-right.png) 0 0 no-repeat;}
+}
+// ==========finish.html===============//
+body.finish {
+    background: #dedede;
+}
+.wrapper-f {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.hd-f {
+    position: relative;
+    width: 100%;/* height: 9rem; */
+    z-index: 1;
+    background: #eeeef3;
+    .ico-bg {
+        position: relative;
+        top: 2.85rem;
+        left: 3.1rem;
+        width: 3.6rem;
+        height: 3.6rem;
+        background-color: #3fb838;
+        @include border-radius(50%);
+    }
+    .ico-tick {
+        position: relative;
+        top: 1.05rem;
+        left: 0.8rem;
+        display: block;
+        @include images-ucard;
+        @include ico-tick;
+    }
+    h2 {
+        font-size: 2.2rem;
+        margin-left: 7.9rem;
+        margin-top: 0;
+        padding-bottom: 4.0rem;
+    }
+}
+.bd-f {
+    position: relative;
+    width: 100%;
+    .ico-mtm {
+        display: block;
+        margin: 0 auto;
+        margin-top: 2.65rem;
+        @include images-ucard;
+        @include ico-mtm;
+    }
+    .tips {
+        color: #000;
+        font-size: 1.5rem;
+        margin-top: 2.25rem;
+        text-align: center;
+    }
+}
+.btnf {
+    margin-top: 2.7rem;
+}
+
+// 媒介查询语句
+@media screen and (max-width:320px) {
+    html {
+        font-size: 10px;
+    }
+}
+@media screen and (min-width:360px)and (max-width:374px) {
+    html {
+        font-size: 11.72875px;
+    }
+}
+@media screen and (min-width:375px)and (max-width:383px) {
+    html {
+        font-size: 12px;
+    }
+}
+@media screen and (min-width:384px)and (max-width:399px) {
+    html {
+        font-size: 12.5px;
+    }
+}
+@media screen and (min-width:400px)and (max-width:413px) {
+    html {
+        font-size: 12.9375px;
+    }
+}
+@media screen and (min-width:414px)and (max-width:423px) {
+    html {
+        font-size: 13.5px;
+    }
+}
+@media screen and (min-width:424px)and (max-width:479px) {
+    html {
+        font-size: 15px;
+    }
+}
+@media screen and (min-width:480px)and (max-width:539px) {
+    html {
+        font-size: 16.875px;
+    }
+}
+@media screen and (min-width:540px)and (max-width:599px) {
+    html {
+        font-size: 18.75px;
+    }
+}
+@media screen and (min-width:600px)and (max-width:639px) {
+    html {
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:640px)and (max-width:719px) {
+    html {
+        font-size: 22.5px;
+    }
+}
+@media screen and (min-width:720px) {
+    html {
+        font-size: 25px;
+    }
+}
+
