@@ -1,0 +1,309 @@
+@charset "UTF-8";
+/*!===========微信支付钱包初期页面=============*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+/*=================公用资源=============*/
+em {
+  font-weight: bold;
+  font-style: normal; }
+
+a {
+  text-decoration: none;
+  color: #CCC; }
+
+.no-copy {
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none; }
+
+.text-copy {
+  -webkit-user-select: text;
+  user-select: text; }
+
+.ellipsis {
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  width: 100%;
+  overflow: hidden;
+  -webkit-text-overflow: ellipsis;
+  text-overflow: ellipsis; }
+
+.clearfix {
+  zoom: 1; }
+
+.clearfix:after {
+  content: ' ';
+  display: block;
+  clear: both; }
+
+/*=============文档自带样式=============*/
+html {
+  display: block;
+  -ms-touch-action: none;
+  font-size: 10px;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  width: 100%;
+  font-size: 1.8rem;
+  background: #FFF;
+  font-family: Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self; }
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #FFF;
+  overflow: hidden; }
+
+.header {
+  background: #499752;
+  width: 100%;
+  height: 9.5rem;
+  border-bottom: 1px solid #DEDFE0;
+  display: box;
+  -webkit-box-align: center;
+  box-align: center; }
+  .header p {
+    position: relative;
+    top: 2.5rem;
+    left: 1.5rem;
+    width: 100%;
+    height: 4.0rem;
+    font-weight: bold;
+    color: #FFF;
+    font-size: 1.8rem;
+    line-height: 1.8rem; }
+    .header p span {
+      display: block;
+      color: #B6D5BA;
+      font-size: 1.5rem;
+      line-height: 2.5rem; }
+  .header em {
+    font-style: normal;
+    color: #FFF100;
+    font-size: 2.5rem; }
+  .header .sign-success {
+    position: absolute;
+    top: -1.5rem;
+    right: 1.5rem;
+    background: url(../images/icons.png) no-repeat;
+    background-size: auto 22.5rem;
+    height: 12.1rem;
+    width: 12.1rem;
+    background-position: 0 -10.4rem; }
+
+.container {
+  width: 100%;
+  height: auto; }
+  .container li {
+    height: 7.0rem; }
+    .container li a {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 7.0rem; }
+      .container li a em {
+        display: block;
+        position: relative;
+        top: -1.3rem;
+        left: 6.0rem;
+        color: #333;
+        font-size: 1.8rem;
+        line-height: 1.8rem; }
+      .container li a p {
+        height: 1.3rem;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+        position: relative;
+        width: 26rem;
+        left: 6rem; }
+      .container li a i[class*="ico"] {
+        display: inline-block;
+        position: relative;
+        left: 1.5rem; }
+      .container li a .ico-cash {
+        top: 2rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 3.0rem;
+        width: 3.0rem;
+        background-position: 0 0; }
+      .container li a .ico-lottery {
+        top: 1.9rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 3.0rem;
+        width: 3.0rem;
+        background-position: -3.4rem 0; }
+      .container li a .ico-Qcoin {
+        top: 2rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 3.0rem;
+        width: 3.1rem;
+        background-position: -6.6rem 0; }
+      .container li a .ico-holiwood {
+        top: 1.8rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 3.0rem;
+        width: 3.0rem;
+        background-position: -9.9rem 0; }
+      .container li a .ico-ydiamond {
+        top: 2.5rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 2.2rem;
+        width: 3.0rem;
+        background-position: 0 -3.5rem; }
+      .container li a .ico-gdiamond {
+        top: 2.5rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 2.2rem;
+        width: 3.0rem;
+        background-position: -3.3rem -3.5rem; }
+      .container li a .ico-QVIP {
+        top: 1rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 4.0rem;
+        width: 3.0rem;
+        background-position: 0 -6.0rem; }
+      .container li a .ico-SQVIP {
+        top: 1.2rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 4.1rem;
+        width: 3.0rem;
+        background-position: -3.3rem -6.0rem; }
+      .container li a .ico-welfare {
+        top: 2.5rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 2.8rem;
+        width: 3.1rem;
+        background-position: -6.7rem -3.4rem; }
+      .container li a .ico-transfer {
+        top: 2.3rem !important;
+        background: url(../images/icons.png) no-repeat;
+        background-size: auto 22.5rem;
+        height: 2.4rem;
+        width: 3.0rem;
+        background-position: -9.8rem -3.4rem; }
+      .container li a .ico-lottery + em, .container li a .ico-Qcoin + em, .container li a .ico-holiwood + em {
+        top: -0.6rem; }
+      .container li a .ico-ydiamond + em, .container li a .ico-gdiamond + em {
+        top: 0.2rem; }
+      .container li a .ico-QVIP + em, .container li a .ico-SQVIP + em {
+        top: -1.6rem; }
+      .container li a .ico-cash + em + p {
+        /* top:-30+18px; */
+        top: -1.3rem; }
+      .container li a .ico-welfare + em + p {
+        /* top:-27+23px; */
+        top: -1rem; }
+      .container li a .ico-transfer + em + p {
+        /* top:-23+20px; */
+        top: -1rem; }
+  .container li::after {
+    content: "";
+    display: block;
+    height: .1rem;
+    width: 95.3125%;
+    background-color: #DEDFE0;
+    position: relative;
+    left: 1.5rem;
+    top: 0; }
+  .container li a::after {
+    content: "";
+    width: .7rem;
+    height: 1.2rem;
+    position: absolute;
+    top: 2.8rem;
+    right: 1.5rem;
+    background: url(../images/icons.png) no-repeat;
+    background-size: auto 22.5rem;
+    height: 1.2rem;
+    width: .7rem;
+    background-position: -7.1rem -6.9rem; }
+
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 10px; } }
+@media screen and (min-width: 321px) and (max-width: 479px) {
+  html {
+    font-size: 12px; } }
+@media screen and (min-width: 480px) and (max-width: 639px) {
+  html {
+    font-size: 15px; } }
+@media screen and (min-width: 640px) and (max-width: 719px) {
+  html {
+    font-size: 20px; } }
+@media screen and (min-width: 720px) and (max-width: 749px) {
+  html {
+    font-size: 22.5px; } }
+@media screen and (min-width: 750px) and (max-width: 799px) {
+  html {
+    font-size: 23.5px; } }
+@media screen and (min-width: 800px) and (max-width: 959px) {
+  html {
+    font-size: 25px; } }
+@media screen and (min-width: 960px) and (max-width: 1079px) {
+  html {
+    font-size: 30px; } }
+@media screen and (min-width: 1080px) {
+  html {
+    font-size: 32px; } }
