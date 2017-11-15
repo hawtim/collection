@@ -5,21 +5,19 @@
 // var cacheStorageKey = 'minimal-pwa-1'
 console.log('Script loaded!')
 var cacheStorageKey = 'minimal-pwa-7'
-var cacheList = [
-  '/',
-  "index.html",
-  "index.css",
-  "smi256.png"
-]
+var cacheList = ['/', 'index.html', 'index.css', 'smi256.png']
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open(cacheStorageKey).then(function(cache) {
-      return cache.addAll(cacheList)
-    }).then(function() {
-      return self.skipWaiting()
-    })
+    caches
+      .open(cacheStorageKey)
+      .then(function(cache) {
+        return cache.addAll(cacheList)
+      })
+      .then(function() {
+        return self.skipWaiting()
+      })
   )
-}) 
+})
 self.addEventListener('fetch', function(e) {
   e.respondWith(
     caches.match(e.request).then(function(response) {
