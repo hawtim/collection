@@ -4,7 +4,9 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
+    "chrome-remote-interface": "^0.25.3",
     "feather-icons": "3.3.0",
+    "lighthouse": "^2.6.0",
     "vue-occupy": "0.0.8",
     "vuedraggable": "2.10.0"
   },
