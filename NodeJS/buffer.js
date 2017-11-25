@@ -1,3 +1,7 @@
+// javascript 语言自身只有字符串数据类型，没有二进制数据类型，但在处理像TCP流或文件流时，必须使用到二进制数据
+// 因此在nodejs中定义了一个buffer类，用来创建一个专门存放二进制数据的缓存区
+// 一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。
+
 var buf = new Buffer(10)
 var buf = new Buffer([10, 20, 30, 40, 50])
 var buf = new Buffer("www.runoob.com", 'utf-8')
