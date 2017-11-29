@@ -47,6 +47,7 @@ const puppeteer = require('puppeteer');
 //   await page.goto('https://news.ycombinator.com', {
 //     waitUntil: 'networkidle2'
 //   })
+//   // pdf 只能在无头模式下执行，不然会报错
 //   await page.pdf({
 //     path: './headlessChrome/hn.pdf',
 //     format: 'A4'
