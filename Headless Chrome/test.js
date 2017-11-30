@@ -4,19 +4,21 @@ const puppeteer = require('puppeteer')
     headless: false
   })
   const page = await browser.newPage()
-  await page.goto('https://github.com')
-  // await page.screenshot({path: 'screenshots/github.png'});
-  // await page.goto('https://github.com/login', {
-  //   waitUntil: 'networkidle2'
+  // await page.goto('https://github.com', {
+  //   waitUntil: 'networkidle2' // 等待网络状态为空闲的时候才继续执行
   // })
-  const dimensions = await page.evaluate(() => {
-    return {
-      width: document.documentElement.clientWidth,
-      height: document.documentElement.clientHeight,
-      deviceScaleFactor: window.devicePixelRatio
-    }
-  })
-  console.log('视窗信息:', dimensions)
+  // // await page.screenshot({path: 'screenshots/github.png'});
+  // // await page.goto('https://github.com/login', {
+  // //   waitUntil: 'networkidle2'
+  // // })
+  // const dimensions = await page.evaluate(() => {
+  //   return {
+  //     width: document.documentElement.clientWidth,
+  //     height: document.documentElement.clientHeight,
+  //     deviceScaleFactor: window.devicePixelRatio
+  //   }
+  // })
+  // console.log('视窗信息:', dimensions)
 
 //   // 获取 html
 //   // 获取上下文句柄
@@ -40,9 +42,16 @@ const puppeteer = require('puppeteer')
 
   // 输入搜索关键字
   await page.keyboard.type('辣子鸡', {
-    delay: 1000 // 控制 keypress 也就是每个字母输入的间隔
+    delay: 100 // 控制 keypress 也就是每个字母输入的间隔
   })
 
   // 回车
   await page.keyboard.press('Enter')
+  page.waitForNavigation()
+  await page.waitForSelector('#nav')  
+  page.evaluate(() => {
+    console.log(document.querySelector('#nav'))
+    document.querySelector('#nav').scrollIntoViewIfNeeded()
+  });
+
 })()
