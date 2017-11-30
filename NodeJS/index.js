@@ -47,17 +47,9 @@ eventEmitter.on('data_received', function () {
 // 触发 connection 事件
 eventEmitter.emit('connection')
 
-console.log('程序执行完毕。')
 
 // Nodejs 异步编程的直接体现就是回调
 // 异步编程依托于回调来实现，但不能说使用了回调后程序就异步化了
-
-var data = fs.readFile('./NodeJS/input.txt', function (err, data) {
-  if (err) return console.log(err)
-  console.log('xxxx')
-  console.log(data.toString())
-})
-
 
 fs.readFile('./NodeJS/input.txt', function (err, data) {
   if (err) {
