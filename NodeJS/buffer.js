@@ -33,6 +33,7 @@ console.log(json)
 
 // 缓冲区合并
 // Buffer.concat(list[, totalLength])
+// list: 用于合并的 Buffer 对象**数组**列表。
 // 返回值: 返回一个多个成员合并的新 Buffer 对象。
 
 var buffer1 = new Buffer('菜鸟教程')
@@ -67,3 +68,4 @@ console.log("buffer2 content: " + buffer2.toString());
 // 这里的语意不应该是buffer1 copy 了buffer2 的内容吗？
 buffer1.copy(buffer2);
 console.log("buffer2 content: " + buffer2.toString());
+// 后边的API比较多，涉及计算机基础，暂时跳过

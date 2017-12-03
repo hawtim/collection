@@ -1,4 +1,5 @@
-// https://juejin.im/post/59e5a86c51882578bf185dba
+// https://juejin.im/post/59e5a86c51882578bf185dba、
+// 这个是比较老的demo了，api已经更新了一些，仅供参考使用方式
 const puppeteer = require('puppeteer')
 const devices = require('puppeteer/DeviceDescriptors')
 const iPhone6 = devices['iPhone 6']
