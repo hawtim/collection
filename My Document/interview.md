@@ -12,9 +12,8 @@ console.log(c)
 正确答案 :
 
 ```js
-;[{ isFolder: true, title: 'test', id: 100 }][
-  { isFolder: true, title: 'test1', id: 101 }
-]
+[{ isFolder: true, title: 'test', id: 100 }]
+[{ isFolder: true, title: 'test1', id: 101 }]
 2
 ```
 
