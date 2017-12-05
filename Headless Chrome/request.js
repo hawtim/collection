@@ -11,14 +11,24 @@ var fs = require('fs')
 function downloadFile(uri, filename, callback) {
   var stream = fs.createWriteStream(filename)
 //   TODO 这里应该是可以添加请求参数或者 cookies
+  let totalLength = 0
   request(uri)
+    
+    .on("response", response => {
+      console.log("response headers is: ", response.headers)
+    })
+    .on("data", chunk => {
+      totalLength += chunk.length
+      console.log("recevied data size: " + totalLength + "KB")
+    })
+    .on("close", callback)
     .pipe(stream)
-    .on('close', callback)
 }
 
 var fileUrl =
-  'http://jidi.oa.com/upload/catch/video/compress/4aquan/2017-10-17/8c75301ee205f9d115fc0036672baf9f.mp4'
-var filename = './Headless Chrome/test.mp4'
+  'http://www.runoob.com/wp-content/uploads/2015/09/event_loop.jpg'
+var filename = './test.jpg'
+
 downloadFile(fileUrl, filename, function() {
   console.log(filename + '下载完毕')
 })

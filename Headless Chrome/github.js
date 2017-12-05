@@ -51,6 +51,8 @@ async function run() {
     // 跳转到指定页码
     await page.goto(`${searchUrl}&p=${h}`)
     // 执行爬取
+    let cookies = await page.cookies(`${searchUrl}&p=${h}`)
+    console.log(cookies)
     const users = await page.evaluate(
       (sInfo, sName, sEmail) => {
         return (
@@ -144,7 +146,6 @@ function upsertUser(userObj) {
       throw err
     }
   })
-  console.log(User)
 }
 
 run()

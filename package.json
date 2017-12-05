@@ -8,7 +8,7 @@
     "feather-icons": "3.3.0",
     "lighthouse": "^2.6.0",
     "mongoose": "^4.13.5",
-    "request": "2.83.0",
+    "request": "^2.83.0",
     "vue-occupy": "0.0.8",
     "vuedraggable": "2.10.0"
   },
