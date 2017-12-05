@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "chrome-remote-interface": "^0.25.3",
+    "deep-diff": "0.3.8",
     "feather-icons": "3.3.0",
     "lighthouse": "^2.6.0",
     "mongoose": "^4.13.5",
