@@ -8,7 +8,9 @@
     "deep-diff": "0.3.8",
     "feather-icons": "3.3.0",
     "lighthouse": "^2.6.0",
+    "mergely": "3.4.0",
     "mongoose": "^4.13.5",
+    "prettydiff": "99.0.1",
     "request": "^2.83.0",
     "vue-occupy": "0.0.8",
     "vuedraggable": "2.10.0"
