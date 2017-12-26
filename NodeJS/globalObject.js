@@ -9,16 +9,17 @@
 
 // 在nodejs 中你不可能在最外层定义变量，因为所有用户代码都是属于当前模块的，而模块本身不是最外层上下文
 
-// __filename 表示当前正在执行的脚本的文件名，它将输出文件所在位置的绝对路径，且和命令行参数所指定的文件名不一定相同，如果是在模块中，返回的值是模块文件的路径
+// __filename 表示当前正在执行的脚本的文件名，它将输出文件所在位置的绝对路径
+// 且和命令行参数所指定的文件名不一定相同，如果是在模块中，返回的值是模块文件的路径
 
 
-console.log(__filename)
+console.log('__filename', __filename)
 
 // __dirname
 
 // __dirname 表示当前执行脚本所在的目录
 
-console.log(__dirname)
+console.log('__dirname', __dirname)
 
 
 function printHello() {
@@ -106,3 +107,11 @@ console.log('当前版本：' + process.version)
 console.log(process.memoryUsage())
 
 console.log(process.uptime())
+
+// 方法参考手册
+// abort() 导致node触发abort事件，会让node退出并生成一个核心文件
+// chdir() 改变当前工作进程的目录
+// cwd() 返回当前进程的工作目录
+// exit([code]) 使用指定的code 结束进程，如果忽略将使用code 0
+// uptime() 返回node已经运行的秒数
+// hrtime() 返回当前进程的高分辨时间
