@@ -113,4 +113,69 @@ fs.open('xxx.txt', 'r+', (err, fd) => {
 
 // 截取文件
 
+// fs.ftruncate(fd, len, callback)
 
+// fd - 通过fs.open() 方法返回的文件描述符
+// len - 文件内容截取的长度
+// callback - 回调函数，没有参数
+var buf = new Buffer(1024)
+
+fs.open('input.txt', 'r+', (err, fd) => {
+    if (err) {
+        return console.error(err)
+    }
+    fs.ftruncate(fd, 10, (err) => {
+        if (err) {
+            console.log(err)
+        }
+        fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
+            if (err) {
+                console.log(err)
+            }
+            if(bytes > 0) {
+                console.log('xxxx', buf.slice(0, bytes).toString())
+            }
+            fs.close(fd, (err) => {
+                if (err) {
+                    console.log(err)
+                }
+                console.log('文件关闭成功')
+            })
+        })
+    })
+})
+
+
+// 删除文件
+// fs.unlink(path, callback)
+
+fs.unlink('yyyy.txt', (err) => {
+    if (err) {
+        return console.log(err)
+    }
+    console.log('文件删除成功')
+})
+
+// 创建目录
+// fs.mkdir(path[, mode], callback)
+
+// 读取目录
+// fs.readdir(path, callback)
+
+// 删除目录
+// fs.rmdir(path, callback)
+
+fs.rmdir('./tmp/test', err => {
+    if (err) {
+        return console.error(err)
+    }
+    console.log('读取 /tmp 目录')
+    fs.readdir('./', (err, files) => {
+        if (err) {
+            return console.error(err)
+        }
+        files.forEach((file) => {
+            console.log(file)
+        })
+    })
+})
