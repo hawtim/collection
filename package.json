@@ -18,7 +18,8 @@
     "request": "^2.83.0",
     "vue-occupy": "0.0.8",
     "vuedraggable": "2.10.0",
-    "ws": "4.0.0"
+    "ws": "4.0.0",
+    "xss": "0.3.7"
   },
   "devDependencies": {
     "puppeteer": "0.13.0",
