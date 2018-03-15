@@ -1,15 +1,20 @@
+// 自定义事件
+// 事件是一种观察者的设计模式，创建松散耦合的代码
+
 function EventTarget() {
     this.handlers = {}
 }
 
 EventTarget.prototype = {
     constuctor: EventTarget,
+    // 注册
     addHandler: function (type, handler) {
         if (typeof this.handlers[type] == 'undefined') {
             this.handlers[type] = []
         }
         this.handlers[type].push(handler)
     },
+    // 触发
     fire: function(event) {
         if (!event.target) {
             event.target = this
@@ -21,6 +26,7 @@ EventTarget.prototype = {
             }
         }
     },
+    // 注销
     removeHandler: function(type, handler){
         if (this.handlers[type] instanceof Array) {
             var handlers = this.handlers[type]
