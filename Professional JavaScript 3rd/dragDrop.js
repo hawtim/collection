@@ -65,17 +65,22 @@ var DragDrop = function() {
     }
     return dragdrop
 }()
-// 支持事件
 
-DragDrop.addHandler('dragstart', function(event) {
-    var status = document.getElementById('status')
-    status.innerHTML = 'Started dragging ' + event.target.id
-})
-
-DragDrop.addHandler('drag', function(event) {
-    
-})
 
 // 拖放回自动针对所有包含 draggable 类的元素启用
 DragDrop.enable()
 
+// 支持事件
+DragDrop.addHandler('dragstart', function(event) {
+    var status = document.getElementById('status')
+    status.innerHTML = 'Started dragging ' + event.target.id
+})
+DragDrop.addHandler('drag', function(event) {
+    var status = document.getElementById('status')
+    status.innerHTML += '</br> Dragged ' + event.target.id + ' to (' + event.x + ',' + event.y + ')'
+})
+DragDrop.addHandler('dragend', function(event) {
+    var status = document.getElementById('status')
+    status.innerHTML += "<br/> Dropped " + event.target.id + " at (" + event.x +
+    "," + event.y + ")";
+})
