@@ -12,6 +12,7 @@
     "element-ui": "^2.2.1",
     "express": "4.16.2",
     "feather-icons": "3.3.0",
+    "gulp": "3.9.1",
     "lighthouse": "^2.6.0",
     "mergely": "3.4.0",
     "mockjs": "1.0.1-beta3",
