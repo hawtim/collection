@@ -1,6 +1,6 @@
 // spritesmith 多图生成最小雪碧图
 
-require(shelljs/global)
+require('shelljs/global')
 
 const fs = require('fs')
 const path = require('path')
@@ -20,8 +20,8 @@ let spritesArray = []
     let fileList = []
     fs.readdirSync(dir).forEach((name) => {
         const spritesFile = path.join(spritesPath, `${name}`)
-        const stat = fs.lstatSync(spritesFile)
-        if (stat.isFile() && /\.png$/.test(name)) {
+        const stats = fs.lstatSync(spritesFile)
+        if (stats.isFile() && /\.png$/.test(name)) {
             filesList.push(spritesFile)
         } else if (stats.isDirectory() && fs.readdirSync(spritesFile).length) {
             const gulpTask = `sprites:${name}`
