@@ -28,15 +28,12 @@ export default {
                 return Promise.reject(err)
             }
             let errorMessage = err.response.data.Message
-            if (error.response.status === 403) {
+            if (err.response.status === 403) {
                 Message({
-                    type: error,
+                    type: 'error',
                     message: '登录信息已过期，请重新登录！',
                     duration: 3000
                 })
-                setTimeout(() => {
-                    // window.location.href = ''
-                }, 1000)
                 return Promise.reject(err)
             }
         })
