@@ -44,8 +44,3 @@ let {foo: baz} = {foo: 'aaa', bar: 'bbb'}
 // foo 是匹配的模式，baz 才是变量
 ```
 
-padStart 的应用
-1. 为数值补全指定位数
-'1'.padStart(10, '0') // '0000000001'
-2. 提示字符串格式
-'12'.padStart(10, 'YYYY-MM-DD') // 'YYYY-MM-12'
