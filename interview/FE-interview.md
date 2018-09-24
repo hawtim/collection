@@ -1,4 +1,3 @@
-笔试题
 ## HTML
 1.以下这些浏览器的内核分别是什么? http://www.cnblogs.com/coco1s/p/4034937.html （3分）
 
