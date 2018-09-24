@@ -3,7 +3,7 @@
 `async` 是 `generator` 函数的语法糖，用于声明一个异步函数，表示该函数不会阻塞后边代码的执行，此函数会返回一个 `promise` 对象，
 在 `async` 声明的函数里面使用 `await` 关键字，可以等待一个 `promise` 对象 `resolve` ，并拿到结果进行处理。
 必须等待内部所有异步操作都执行完，才会发生状态改变，即才会执行 `then` 回调函数
-我们更多的在 `await` 后面放一个 `promise` 对象的表达式， `await` 只能用在有 `async` 声明的异步函数里
+更多的在 `await` 后面放一个 `promise` 对象的表达式， `await` 只能用在有 `async` 声明的异步函数里
 
 ## async 函数的改进在于下面四点
 - 内置执行器，`generator` 函数的执行必须依靠执行器`testGenerator.next()` ，`async` 自带执行器，调用方式和普通函数一致

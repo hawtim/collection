@@ -11,7 +11,7 @@ function Person(name, age, job) {
 var person = new Person('hawtim', 25, 'Software Engineer')
 
 
-// 当以上的代码忽略了 new 操作符来调用构造函数时，由于 this 对象是在运行时绑定的额，所以此时 this 会映射到全局对象 window 上
+// 当以上的代码忽略了 new 操作符来调用构造函数时，由于 this 对象是在运行时绑定的，所以此时 this 会映射到全局对象 window 上
 
 // 作用域安全的构造函数在进行任何更改前，首先确认this对象是正确类型的实例
 

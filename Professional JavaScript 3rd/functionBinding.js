@@ -39,15 +39,3 @@ EventUtil.addHandler(btn, "click", bind(handler.handleClick, handler));
 
 // 现在已在原生ES5 中实现
 EventUtil.addHandler(btn, "click", handler.handleClick.bind(handler));
-
-
-
-
-
-
-
-
-
-
-
-

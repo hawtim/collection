@@ -1,5 +1,3 @@
-import { connect } from "tls";
-
 // 1 修饰类本身
 
 function testDecorator(desc) {
@@ -8,7 +6,7 @@ function testDecorator(desc) {
     }
 }
 
-//调用testDecorator函数之后，其又返回一个匿名函数，利用闭包的特性使用了decs变量 
+//调用testDecorator函数之后，其又返回一个匿名函数，利用闭包的特性使用了decs变量
 @testDecorator("operate  one")
 class ClassA {}
 console.log(ClassA)
