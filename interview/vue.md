@@ -9,7 +9,7 @@ history 模式 h5 支持，需要后端的配合
 
 vue 是一个 MVVM 框架，view 是界面 model 是数据模型 viewmodel 作为桥梁负责沟通 view 和 model
 在 vue 中，最核心的原理就是他的双向绑定，即 vue 中的数据劫持
-通过在 vue 的内部使用了 object.defineProperty 来实现双向绑定，通过这个实现监听 set 和 get 事件
+通过在 vue 的内部使用了 Object.defineProperty 来实现双向绑定，通过这个实现监听 set 和 get 事件
 并且给属性的变动添加发布订阅事件。
 
 **生命周期**

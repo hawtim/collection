@@ -107,6 +107,20 @@ model notify 到 vm 再通过双向绑定触发 view 变化
     3.3 运行 intersectionObserver 回调
 4. 回到第一步
 
+常见的 macrotask 有
+setTimeout、setInterval
+requestAnimationFrame
+解析 HTML
+执行主线程js代码
+修改 url
+页面加载
+用户交互
+
+常见的 microtask 有
+promise
+mutation.observer
+process.nextTick
+
 ## 滚动事件
 获取滚动条的位置
 `var scrollTop = document.body.scrollTop + document.documentElement.scrollTop` 只有一个值会生效，一个有值，另一个就为0
