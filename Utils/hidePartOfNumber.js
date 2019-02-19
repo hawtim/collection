@@ -11,4 +11,3 @@ function hidePartOfNumber(str, offset, symbol) {
     splitStr.splice(startIndex, replaceLength, ...replaceTemp)
     return splitStr.join('')
 }
-
