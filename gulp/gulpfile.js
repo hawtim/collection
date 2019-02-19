@@ -1,100 +1,179 @@
-// spritesmith 多图生成最小雪碧图
+'use strict'
 
-require('shelljs/global')
+var gulp = require('gulp')
+var browserSync = require('browser-sync').create()
+var sass = require('gulp-sass')
+var rename = require('gulp-rename')
+var del = require('del')
+var runSequence = require('run-sequence')
+var replace = require('gulp-replace')
+var injectPartials = require('gulp-inject-partials')
+var inject = require('gulp-inject')
+var sourcemaps = require('gulp-sourcemaps')
+var concat = require('gulp-concat')
+var merge = require('merge-stream')
 
-const fs = require('fs')
-const path = require('path')
-const gulp = require('gulp')
-const sass = require('gulp-sass')
-const buffer = require('vinyl-buffer')
-const spritesmith = require('gulp.spritesmith')
-const imagemin = require('gulp-imagemin')
-const pngquant = require('imagemin-pngquant')
-const envConfig = require('./config')
+gulp.paths = {
+  dist: 'dist',
+}
 
-const spritesPath = path.join(__dirname, 'src/assets/sprites')
+var paths = gulp.paths
 
-let spritesArray = []
+// Static Server + watching scss/html files
+gulp.task('serve', ['sass'], function () {
 
-(function (dir) {
-    let fileList = []
-    fs.readdirSync(dir).forEach((name) => {
-        const spritesFile = path.join(spritesPath, `${name}`)
-        const stats = fs.lstatSync(spritesFile)
-        if (stats.isFile() && /\.png$/.test(name)) {
-            filesList.push(spritesFile)
-        } else if (stats.isDirectory() && fs.readdirSync(spritesFile).length) {
-            const gulpTask = `sprites:${name}`
-            spritesArray.push(gulpTask)
-            gulp.task(gulpTask, () => {
-                let spritesData = gulp.src(path.join(spritesFile, '*.png'))
-                    .pipe(spritesmith({
-                        imgName: `${name}_icon.png`,
-                        imgPath: `/${envConfig.build.assetsSubDirectory}/img/${name}_icon.png`,
-                        cssName: `_${name}_icon.scss`
-                    }))
-                spritesData.css.pipe(gulp.dest(path.join(__dirname, 'src/assets/css/')))
-                spritesData.img
-                    .pipe(buffer())
-                    .pipe(imagemin({
-                        optimizationLevel: 7, // 类型 Number 默认3，取值范围： 0 - 7
-                        use: [pngquant()]
-                    }))
-                    .pipe(gulp.dest(path.join(__dirname, 'static/img/')))
-            })
-        }
+  browserSync.init({
+    port: 3000,
+    server: "./",
+    ghostMode: false,
+    notify: false
+  })
+
+  gulp.watch('scss/**/*.scss', ['sass'])
+  gulp.watch('**/*.html').on('change', browserSync.reload)
+  gulp.watch('js/**/*.js').on('change', browserSync.reload)
+
+})
+
+// Static Server without watching scss files
+gulp.task('serve:lite', function () {
+
+  browserSync.init({
+    server: "./",
+    ghostMode: false,
+    notify: false
+  })
+
+  gulp.watch('**/*.css').on('change', browserSync.reload)
+  gulp.watch('**/*.html').on('change', browserSync.reload)
+  gulp.watch('js/**/*.js').on('change', browserSync.reload)
+
+})
+
+gulp.task('sass', function () {
+  return gulp.src('./scss/style.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('./css'))
+    .pipe(browserSync.stream())
+})
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./scss/**/*.scss')
+})
+
+/*sequence for injecting partials and replacing paths*/
+gulp.task('inject', function () {
+  runSequence('injectPartial', 'injectAssets', 'replacePath')
+})
+
+/* inject partials like sidebar and navbar */
+gulp.task('injectPartial', function () {
+  return gulp.src("./**/*.html", {
+      base: "./"
     })
-    if (filesList.length) {
-        spritesArray.push('sprites:app')
-        gulp.task('sprites:app', () => {
-            let spritesData = gulp.src(filesList)
-                .pipe(spritesmith({
-                    imgName: 'app_icon.png',
-                    imgPath: `/${envConfig.build.assetsSubDirectory}/img/app_icon.png`,
-                    cssName: '_app_icon.scss'
-                }))
-            spritesData.css.pipe(gulp.dest(path.join(__dirname, 'src/assets/css/')))
-            spritesData.img.pipe(buffer()).pipe(imagemin({
-                optimizationLevel: 7, // 类型： Number 默认：3 取值范围： 0 - 7
-                use: [pngquant()]
-            }))
-            .pipe(gulp.dest(path.join(__dirname, 'static/img/')))
-        })
-    }
-}(spritesPath))
-
-gulp.task('sprites', spritesArray)
-
-// scss:single 不依赖图片的合并
-
-gulp.task('scss:single', () => {
-    gulp.src(path.resolve(spritesPath, '../css/*.scss'))
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(gulp.dest(path.join(__dirname, 'static/css/')))
+    .pipe(injectPartials())
+    .pipe(gulp.dest("."))
 })
 
-gulp.task('watch:scss', () => {
-    gulp.watch('src/assets/css/*.scss', ['scss:single'])
+/* inject Js and CCS assets into HTML */
+gulp.task('injectAssets', function () {
+  return gulp.src('./pages/**/*.html')
+    .pipe(inject(gulp.src([
+      './vendors/iconfonts/mdi/css/materialdesignicons.min.css',
+      './vendors/css/vendor.bundle.base.css',
+      // './vendors/css/vendor.bundle.addons.css',
+      './vendors/js/vendor.bundle.base.js',
+      './vendors/js/vendor.bundle.addons.js'
+    ], {
+      read: false
+    }), {
+      name: 'plugins',
+      relative: true
+    }))
+    .pipe(inject(gulp.src([
+      './css/*.css',
+      './js/off-canvas.js',
+      './js/misc.js',
+    ], {
+      read: false
+    }), {
+      relative: true
+    }))
+    .pipe(gulp.dest('./pages'))
 })
 
-gulp.task('scss', ['sprites'], () => {
-    gulp.src(path.resolve(spritesPath, '../css/*.scss'))
-        .pipe(sass({
-            outputStyle: 'compressed'
-        })).on('error', sass.logError)
-        .pipe(gulp.dest(path.join(__dirname, 'static/css/')))
+/*replace image path and linking after injection*/
+gulp.task('replacePath', function () {
+  gulp.src('pages/*/*.html', {
+      base: "./"
+    })
+    .pipe(replace('src="images/', 'src="../../images/'))
+    .pipe(replace('href="pages/', 'href="../../pages/'))
+    .pipe(replace('href="index.html"', 'href="../../index.html"'))
+    .pipe(gulp.dest('.'))
+  gulp.src('pages/*.html', {
+      base: "./"
+    })
+    .pipe(replace('src="images/', 'src="../images/'))
+    .pipe(replace('"pages/', '"../pages/'))
+    .pipe(replace('href="index.html"', 'href="../index.html"'))
+    .pipe(gulp.dest('.'))
 })
 
-gulp.task('img', () => {
-    gulp.src(path.join(__dirname, 'src/assets/img/*.png'))
-        .pipe(buffer())
-        .pipe(imagemin({
-            optimizationLevel: 7,
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest(path.join(__dirname, 'static/img/')))
+/*sequence for building vendor scripts and styles*/
+gulp.task('bundleVendors', function () {
+  runSequence('copyRecursiveVendorFiles', 'buildBaseVendorStyles', 'buildBaseVendorScripts', 'buildOptionalVendorScripts')
 })
 
-gulp.task('default', ['sprites', 'scss', 'img'])
+/* Copy whole folder of some specific node modules that are calling other files internally */
+gulp.task('copyRecursiveVendorFiles', function () {
+  var mdi = gulp.src(['./node_modules/mdi/**/*'])
+    .pipe(gulp.dest('./vendors/iconfonts/mdi'))
+  var fontawesome = gulp.src(['./node_modules/font-awesome/**/*'])
+    .pipe(gulp.dest('./vendors/iconfonts/font-awesome'))
+  return merge(
+    mdi,
+    fontawesome
+  )
+})
+
+/*Building vendor scripts needed for basic template rendering*/
+gulp.task('buildBaseVendorScripts', function () {
+  return gulp.src([
+      './node_modules/jquery/dist/jquery.min.js',
+      './node_modules/popper.js/dist/umd/popper.min.js',
+      './node_modules/bootstrap/dist/js/bootstrap.min.js',
+      './node_modules/moment/min/moment.min.js',
+      './node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+      './node_modules/twbs-pagination/jquery.twbsPagination.min.js',
+      './node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js',
+      './node_modules/jquery-toast-plugin/dist/jquery.toast.min.js'
+    ])
+    .pipe(concat('vendor.bundle.base.js'))
+    .pipe(gulp.dest('./vendors/js'))
+})
+
+/*Building vendor styles needed for basic template rendering*/
+gulp.task('buildBaseVendorStyles', function () {
+  return gulp.src([
+      './node_modules/bootstrap/dist/css/bootstrap.min.css',
+      './node_modules/perfect-scrollbar/css/perfect-scrollbar.css',
+      './node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.css',
+      './node_modules/jquery-toast-plugin/dist/jquery.toast.min.css'
+    ])
+    .pipe(concat('vendor.bundle.base.css'))
+    .pipe(gulp.dest('./vendors/css'))
+})
+
+/*Building optional vendor scripts for addons*/
+gulp.task('buildOptionalVendorScripts', function () {
+  return gulp.src([
+      'node_modules/chart.js/dist/Chart.min.js'
+    ])
+    .pipe(concat('vendor.bundle.addons.js'))
+    .pipe(gulp.dest('./vendors/js'))
+})
+
+gulp.task('default', ['serve'])

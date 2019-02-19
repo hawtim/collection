@@ -20,18 +20,18 @@ function trigger(elem, event, data, isStopPropagation) {
     event = typeof event === 'object' ? event : {
         type: type,
         preventDefault: noop,
-        stopPropagation: function() {
+        stopPropagation: function () {
             isStopPropagation = true
         }
     }
     event.target = elem
     data.unshift(event)
 
-    if (eventHandler){
+    if (eventHandler) {
         eventHandler.call(elem, data)
     }
     // 递归调用自身来模拟冒泡
-    if (parent && !isStopPropagation){
+    if (parent && !isStopPropagation) {
         data.shift()
         this.trigger(parent, event, data)
     }

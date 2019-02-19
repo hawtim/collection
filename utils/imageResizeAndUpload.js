@@ -1,11 +1,11 @@
 var ImageResizer = function (opts) {
     var settings = {
-        resizeMode: "auto", //压缩模式，总共有三种  auto,width,height auto表示自动根据最大的宽度及高度等比压缩，width表示只根据宽度来判断是否需要等比例压缩，height类似。  
-        dataSource: "", //数据源。数据源是指需要压缩的数据源，有三种类型，image图片元素，base64字符串，canvas对象，还有选择文件时候的file对象。。。  
+        resizeMode: "auto", //压缩模式，总共有三种  auto,width,height auto表示自动根据最大的宽度及高度等比压缩，width表示只根据宽度来判断是否需要等比例压缩，height类似
+        dataSource: "", //数据源。数据源是指需要压缩的数据源，有三种类型，image图片元素，base64字符串，canvas对象，还有选择文件时候的file对象
         dataSourceType: "image", //image  base64 canvas
         maxWidth: 500, //允许的最大宽度
-        maxHeight: 500, //允许的最大高度。
-        onTmpImgGenerate: function (img) {}, //当中间图片生成时候的执行方法。。这个时候请不要乱修改这图片，否则会打乱压缩后的结果。  
+        maxHeight: 500, //允许的最大高度
+        onTmpImgGenerate: function (img) {}, //当中间图片生成时候的执行方法。。这个时候请不要乱修改这图片，否则会打乱压缩后的结果
         success: function (resizeImgBase64, canvas) {
 
         }, //压缩成功后图片的base64字符串数据。
@@ -155,8 +155,7 @@ var ImageResizer = function (opts) {
         });
     })();
 
-    var returnObject = {
-    };
+    var returnObject = {};
 
     return returnObject;
 };

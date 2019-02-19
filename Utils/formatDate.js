@@ -1,40 +1,40 @@
 function formatDate(millSeconds, format) {
-  if (!millSeconds) return ""
-  if (typeof millSeconds === "string") {
-    millSeconds = parseInt(millSeconds, 10)
-  }
-  if (!format) {
-    format = "yyyy-MM-dd hh:mm"
-  }
-  const date = new Date(millSeconds)
-  var options = {
-    "M+": date.getMonth() + 1, //month
-    "d+": date.getDate(), //day
-    "h+": date.getHours(), //hour
-    "m+": date.getMinutes(), //minute
-    "s+": date.getSeconds(), //second
-    "q+": Math.floor((date.getMonth() + 3) / 3), //quarter
-    S: date.getMilliseconds() //millisecond
-  }
-
-  if (/(y+)/i.test(format)) {
-    format = format.replace(
-      RegExp.$1,
-      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
-    )
-  }
-
-  for (var key in options) {
-    if (new RegExp("(" + key + ")").test(format)) {
-      format = format.replace(
-        RegExp.$1,
-        RegExp.$1.length == 1
-          ? options[key]
-          : ("00" + options[key]).substr(("" + options[key]).length)
-      )
+    if (!millSeconds) return ""
+    if (typeof millSeconds === "string") {
+        millSeconds = parseInt(millSeconds, 10)
     }
-  }
-  return format
+    if (!format) {
+        format = "yyyy-MM-dd hh:mm"
+    }
+    const date = new Date(millSeconds)
+    var options = {
+        "M+": date.getMonth() + 1, //month
+        "d+": date.getDate(), //day
+        "h+": date.getHours(), //hour
+        "m+": date.getMinutes(), //minute
+        "s+": date.getSeconds(), //second
+        "q+": Math.floor((date.getMonth() + 3) / 3), //quarter
+        S: date.getMilliseconds() //millisecond
+    }
+
+    if (/(y+)/i.test(format)) {
+        format = format.replace(
+            RegExp.$1,
+            (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+        )
+    }
+
+    for (var key in options) {
+        if (new RegExp("(" + key + ")").test(format)) {
+            format = format.replace(
+                RegExp.$1,
+                RegExp.$1.length == 1 ?
+                options[key] :
+                ("00" + options[key]).substr(("" + options[key]).length)
+            )
+        }
+    }
+    return format
 }
 
 //使用方法
