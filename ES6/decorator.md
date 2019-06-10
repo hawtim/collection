@@ -1,23 +1,26 @@
-// 1 修饰类本身
+## 添加静态属性(修饰类本身)
 
+```js
 function testDecorator(desc) {
     return function (target) {
         target.addParam = desc
     }
 }
-
-//调用testDecorator函数之后，其又返回一个匿名函数，利用闭包的特性使用了decs变量
+// 调用 testDecorator 函数之后，其又返回一个作用于描述符的匿名函数，利用闭包的特性使用了 decs 变量
 @testDecorator("operate  one")
 class ClassA {}
-console.log(ClassA)
+console.log(ClassA) // class ClassA {}
 console.log(ClassA.addParam) // operate  one
 
 @testDecorator("operate  two")
 class ClassB {}
 console.log(ClassB.addParam) // operate  two
 
-// 以上的例子添加了静态属性
-// 添加实例属性可以通过 prototype 对象操作
+```
+
+## 添加实例属性(通过 prototype 对象操作)
+
+```js
 function testable(target) {
     target.prototype.isTestable = true;
 }
@@ -26,13 +29,16 @@ function testable(target) {
 class MyTestableClass {}
 
 let obj = new MyTestableClass();
-console.log(obj)
-console.log(obj.isTestable) // true
 
-// 通过 maxins 装饰器给类添加上新属性
-function maxins(...list) {
+console.log(obj.isTestable) // true
+```
+
+## 通过 mixins 装饰器给类添加上新属性
+
+```js
+function mixins(...mixin) {
     return function (target) {
-        Object.assign(target.prototype, ...list)
+        Object.assign(target.prototype, ...mixin)
     }
 }
 
@@ -44,43 +50,52 @@ let Foo = {
 
 Foo.foo()
 
-@maxins(Foo)
-class ClassC {}
+@mixins(Foo)
 
 let C = new ClassC()
 C.foo()
-console.log(C) // ClassC {}  ClassC 本身是没有 foo 属性的，因为添加的是实例属性
+// ClassC {}  ClassC 本身是没有 foo 属性的，因为添加的是实例属性
+console.log(C)
+```
 
-// 实际的React 项目开发中，常常需要写成下面这样
+## 实际的 React 项目开发中，常常需要写成下面这样
 
-// class MyReactComponent extends React.Component {}
-// export default connect(mapStateToProps, mapDispacthToProps)(MyReactComponent)
+```js
+class MyReactComponent extends React.Component {}
+export default connect(mapStateToProps, mapDispatchToProps)(MyReactComponent)
+```
 
-// 使用装饰器后，可以简化代码
-// @connect(mapStateToProps, mapDispacthToProps)
-// export default class MyReactComponent extends React.Component
+### 使用装饰器后，可以简化代码
 
+```js
+@connect(mapStateToProps, mapDispatchToProps)
+export default class MyReactComponent extends React.Component
+```
 
-// 2. 修饰类的属性/方法
+## 修饰类的属性/方法
 
+接收三个参数，**类的原型对象 要修饰的属性名 属性的描述对象**
+
+```js
+function readonly(target, name, descriptor) {
+    console.log('name', name)
+    descriptor.writable = false
+    return descriptor
+}
 class Person {
     @readonly
     username() {
         console.log('is readonly')
     }
 }
-// 接收三个参数，第一个是类的原型对象，第二个是所要修饰的属性名，第三个参数是该属性的描述对象
-function readonly(target, name, descriptor) {
-    console.log('name', name)
-    descriptor.writable = false
-    return descriptor
-}
-
 let person = new Person()
 console.log(person)
-person.username()
+person.username() // name /n is readonly
+```
 
-// e.g
+## 另外一个例子
+
+```js
 class Math {
     @log
     add(a, b) {
@@ -101,22 +116,23 @@ function log(target, name, descriptor) {
 }
 
 const math = new Math()
-
 math.add(2, 4)
 
+// 原本是
+function add(a, b) {
+    return a + b
+}
 
-// // 原本是
-// function add(a, b) {
-//     return a + b
-// }
+// 变成
+function anonymousFunction() {
+    console.log(`Calling with`, arguments)
+    return add.apply(this, arguments)
+}
+```
 
-// // 变成
-// function anonymousFunction() {
-//     console.log(`Calling with`, arguments)
-//     return add.apply(this, arguments)
-// }
+### 使用 Decorator 写法的 react 组件
 
-// 使用 Decorator 写法的 react 组件
+```js
 @Component({
     tag: 'my-component',
     styleUrl: 'my-component.scss'
@@ -133,8 +149,11 @@ export class MyComponent {
     }
 }
 
+```
 
-// 3 注释功能
+### 注释功能
+
+```js
 function dec(id) {
     console.log('evaluated', id)
     return (target, property, descriptor) => console.log('executed', id)
@@ -150,26 +169,29 @@ class Example {
 
 let example = new Example()
 example.method()
+```
 
-// 此外装饰器还可以用来类型检查，因此这一功能相当重要
+### 类型检查
 
-// 不能将装饰器用于函数
-// 装饰器只能用于类和类方法，不能用于函数，因为存在函数提升，编译时会报错
+不能将装饰器用于函数，装饰器只能用于类和类方法，不能用于函数，因为存在函数提升，编译时会报错
 
-// var counter = 0
-// var add = function() {
-//     counter++
-// }
+```js
+var counter = 0
+var add = function() {
+    counter++
+}
 
-// @add
-// function foo() {
-//     console.log('xxxx')
-// }
+@add
+function foo() {
+    console.log('xxxx')
+}
 
-// foo()
+foo()
+```
 
-// 如果一定要修饰函数,可以采用高阶函数的形式直接执行
+如果一定要修饰函数,可以采用**高阶函数**的形式直接执行
 
+```js
 function doSomething(name) {
     console.log('hello', name)
 }
@@ -182,3 +204,6 @@ function loggingDecorator(wrapped) {
         return result
     }
 }
+
+loggingDecorator(doSomething)('hawtim') // Starting \n hello hawtim \n Finished
+```
