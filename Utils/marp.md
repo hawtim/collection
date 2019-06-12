@@ -15,7 +15,10 @@ _paginate: false
 关于爱乡宝
 ===
 
-爱乡宝项目是一个
+爱乡宝项目是一个去年年底开始的创业项目，内容是个人募捐，slogan 是随时随地随手帮助家乡。
+经过了一个月的封闭开发之后顺利上线第一期，然后开始了后边4个阶段的迭代，目前已经进入需求稳定期，在前端使用的技术上也基本上有了定型。
+本次分享会从前端的技术选型入手，讲讲项目的基础建设
+
 
 ---
 
@@ -369,17 +372,89 @@ Q&A :question:
 
 ---
 
-## 其他分享主题 :thinking:
+其他分享主题 :thinking:
+===
 
-### 基于 vant 的 H5 和 小程序同构
-:man_technologist:
+---
 
-### 基于 vant 的二次封装及 vuepress 的文档同步
-:arrows_counterclockwise:
+基于 vant 的 H5 和 小程序同构:man_technologist:
+===
 
-### 爱乡宝前端监控和前端埋点
-:footprints:
+Aborted:
+虽然技术方向暂时停止了，但在之前的探索中也积累下了不少经验。
+现在已经有了明确的方向来实现 H5 和小程序的同构。
 
+在爱乡宝中，通过两套构建系统和脚本，使用统一的不同版本的 ui 框架，对于交互简单的页面，可以直接复用，对于有下拉刷新，上滑加载的页面，则需要替换模板，
+
+---
+
+基于 vant 的二次封装及 vuepress 的文档同步:arrows_counterclockwise:
+===
+
+DOING：目前基于 vant 二次封装了许多业务中常用的组件，
+
+---
+
+爱乡宝前端埋点 :footprints:
+===
+
+对于前端埋点，业界有三种方案
+
+- 代码埋点、可视化埋点和无痕埋点
+
+代码埋点：
+
+- 入侵代码埋点，业界代表 `友盟`
+- 可视化埋点： 通过一个可视化界面系统，通过点击想监测的元素，然后起个名字和编号，埋点就完成了，业界代表 `易观方舟`
+- 无痕埋点：全量埋点，业界代表 `gio`
+
+---
+
+代码实践
+===
+
+爱乡宝的前端埋点采用的是`友盟`的代码埋点。
+对于埋点如何写得更好，降低其入侵性，我觉得是一个有价值的问题：
+说了这么多，show me the code:
+
+采用的技术，mixin + promise + object.assign
+
+```js
+this.getJSSDK().then(success => {
+  if (success) {
+    this.buildShareStyles()
+    this.patchShareTree()
+    this.wxShare()
+  }
+})
+```
+---
+
+
+### 爱乡宝的前端项目架构
+
+因为前期的组件封装，在复用和需求的实现上变得迅速和便捷，也就有了更多的时间探讨项目在架构上的调整。
+
+```bash
+├── buildH5
+├── configH5
+├── distH5 # 打包后的文件路径
+├── index.html
+├── yarn.lock # 使用 yarn 做包管理
+├── package.json # 包版本及脚本配置
+├── src
+│   ├── AppH5.vue # vue 入口文件
+│   ├── api # api 配置
+│   ├── assets # 静态文件
+│   ├── components #组件库
+│   ├── mainH5.js # 打包入口文件
+│   ├── pages # 页面
+│   ├── router # 路由定义
+│   ├── store # 状态管理定义
+│   └── utils # 工具库
+└── static
+    └── img
+```
 
 ---
 
@@ -393,3 +468,4 @@ Q&A :question:
 ---
 
 ## 致谢 :heart: 160FE
+
