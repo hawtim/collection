@@ -13,18 +13,18 @@
 
 ---
 
-## JavaScript 的性能历史🕛
+### JavaScript 的性能历史🕛
 
-1. 1995 年 `JavaScript` 诞生。
-2. 2008年，浏览器加入了即时编译器，又称之为 `JIT`(just-in-time) 。
-> <small>在编译器模式下，JS 的运行速度快了 10 倍，随着这种性能改进， JS 开始被用于意想不到的事情，比如使用 `NodeJS` 和 `Electron` 构建应用程序</small>
-4. 9102年: `WebAssembly` 可能是 web 构建的新转折点
+1. 1995 年 JavaScript 诞生。
+2. 2008年，浏览器加入了即时编译器，又称之为 JIT (just-in-time) 
+> <small>在编译器模式下，JS 的运行速度快了 10 倍，随着这种性能改进， JS 开始被用于意想不到的事情，比如使用 NodeJS 和 Electron 构建应用程序</small>
+4. 未来: WebAssembly 可能是 web 构建的新转折点
 
 ---
 
-## JavaScript 解释器 📝
+### JavaScript 的翻译过程 📝
 
-<!-- *template: gaia -->
+<!-- *template: invert -->
 <!-- *page_number: false -->
 
 :man_mechanic: 人类 :arrow_right: 机器
@@ -35,15 +35,17 @@
 
 ---
 
-## 两种翻译方式
+### 两种翻译方式
 <!-- *template: invert -->
 
 - 解释器
 - 编译器
+
 ---
 
 ### 解释器
 
+使用解释器，翻译的过程基本上是一行一行及时生效的。
 
 浏览器早期使用 `JavaScript` 解释器
 
@@ -55,7 +57,9 @@
 
 ### 编译器
 
-浏览器后期引入 `JavaScript` 引擎
+编译器是另外一种工作方式，它在执行前翻译。
+
+浏览器厂商在 2008 年引入 JavaScript 引擎
 
 ==优点:== 运行相同代码的时候，不需重新转换代码，执行效率更高
 
@@ -63,136 +67,97 @@
 
 ---
 
+### JS 引擎代码执行过程
 
-### JavaScript 引擎的简介
-<!-- *template: gaia -->
+<br>
 
-- 监视器/分析器 & 作用
-- 细节原理
-
----
-
-### 监视器/分析器 & 作用
-
-在编译 js 代码的时候，编译器在 `JavaScript` 引擎添加了新的部分，称为`监视器/分析器`
-
-该监视器在 `JavaScript` 运行时监控代码，并记录代码片段运行的次数以及使用了哪些数据类型
+- Parsing - 源码转换过程
+- Compiling+Optimizing - 基础编译和优化编译过程
+- Re-optimizing - 重新优化过程
+- Execution - 执行代码的过程
+- Garbage Collection - 清理内存的时间
 
 ---
 
-### 细节原理
+### WebAssembly 代码执行过程
 
-<!-- *template: invert -->
+<br>
 
-如果相同的代码行运行了几次，这段代码被标记为 `warm`，运行次数比较多，就被标记为 `hot`
-
-被标记为 `warm` 的代码被扔给基础编译器，只能提升一点点的速度。被标记为 `hot` 的代码被扔给优化编译器，速度提升的更多。
+- Decode - 解码
+- Compile + Optimize - 编译和优化
+- Execute - 执行代码的过程
 
 ---
 
 ### 耗时比较
-<!-- *template: gaia -->
+<!-- *template: invert -->
 <!-- *page_number: false -->
 
 ##### JavaScript Vs. WebAssembly
 
 ---
 
-### JS 引擎
-
-<br>
-
-- Parsing - 源码转换过程
-- Compiling+optimizing - 基础编译和优化编译过程
-- Re-optimizing - 重新优化过程
-- Execution - 执行代码的过程
-- Garbage collection - 清理内存的时间
-
----
-
-### WebAssembly
-
-<br>
-
-- decode - 解码
-- compile+optimize - 编译和优化
-- execute - 执行代码的过程
-
----
-
 ### 请求
 
-下载执行与 JavaScript 等效的 WebAssembly 文件需要更少的时间，因为它的体积更小。WebAssembly 设计的体积更小，可以以二进制形式表示。
+下载执行与 JS 等效的 WAS 文件需要更少的时间
 
-即使使用 gzip 压缩的 JavaScript文件很小，但 WebAssembly 中的等效代码可能更小。
+因为 WAS 设计的体积更小，可以以二进制形式表示
 
----
-
-### 解析
-
-JavaScript 源码一旦被下载到浏览器，源将被解析为抽象语法树（AST）。
-
-通常浏览器解析源码是懒惰的，浏览器首先会解析他们真正需要的东西，没有及时被调用的函数只会被创建成存根。
-
-在这个过程中，AST被转换为该 JS 引擎的中间表示（称为字节码）。
-
-相反，WebAssembly 不需要被转换，因为它已经是字节码了。它仅仅需要被解码并确定没有任何错误。
+:arrow_right: 下载速度更快
 
 ---
 
-### 编译 + 优化
+### 解析 Parsing
 
-JavaScript 是在执行代码期间编译的。
+JS 源码一旦被下载到浏览器，源码将被解析为抽象语法树 AST，AST 被转换为该 JS 引擎的字节码。
 
-因为 JavaScript 是动态类型语言，相同的代码在多次执行中都有可能都因为代码里含有不同的类型数据被重新编译。
+WAS 不需要被转换，因为它已经是字节码，它仅仅需要被解码并确定没有任何错误。
 
-WAS 与机器代码更接近。类型是程序的一部分
-- 编译器不需要在运行代码时花费时间去观察代码中的数据类型，在开始编译时做优化
-- 编译器不需要在每次执行相同代码中判断数据类型是否一样
+:arrow_right: 解码 WebAssembly 比 解析 JavaScript 要快
 
 ---
 
-### 重新优化
+### 编译 + 优化 Compiling+Optimizing
+
+JS 是动态类型语言，需要为动态类型多次编译
+
+WAS 与机器代码更接近，类型是代码的一部分
+
+:arrow_right: WAS 编译和优化所需的时间较少
+
+---
+
+### 重新优化 Re-optimizing
 
 有时 JIT 抛出一个优化版本的代码，然后重新优化。
 
-JIT 基于运行代码的假设不正确时，会发生这种情况。例如，当进入循环的变量与先前的迭代不同时，或者在原型链中插入新函数时，会发生重新优化。
+在 WAS 中，从一开始类型就是明确的，不需要对类型进行假设。
 
-在 WebAssembly 中，类型是明确的，因此 JIT 不需要根据运行时收集的数据对类型进行假设。这意味着它不必经过重新优化的周期。
-
-> So we deleted re-optimize 
+:arrow_right: WAS 不必经过重新优化的周期。
 
 ---
 
-### 执行
+### 执行 Execution
 
-WebAssembly 是专门给编译器阅读的，提供了一组更适合机器的指令
+WAS 和 JS 需要解释执行不同的是，WAS 字节码和底层机器码很相似可快速装载运行
 
----
-
-### 垃圾回收
-
-在 JavaScript 中，开发者不需要担心内存中无用变量的回收，JS 引擎使用一个叫垃圾回收器的东西来自动进行垃圾回收。
-
-WAS 不支持垃圾回收，完全靠手动管理内存，这在开发上可能会造成困难，但它的确提升了性能
+:arrow_right: 性能相对于 JS 解释执行大大提升
 
 ---
 
-### 对比结果
+### 垃圾回收 Garbage Collection
 
+在 JS 中，开发者不需要担心内存中无用变量的回收，JS 引擎使用一个叫垃圾回收器的东西来自动进行垃圾回收。
 
-- 文件加载 - WebAssembly 文件体积更小，所以下载速度更快。
-- 解析 - 解码 WebAssembly 比解析 JavaScript 要快
-- 编译和优化 - 编译和优化所需的时间较少，因为在将文件推送到服务器之前已经进行了更多优化，JavaScript 需要为动态类型多次编译
-- 代码重新优化 - WebAssembly 代码不需要重新优化，因为编译器有足够的信息可以在第一次运行时获得正确的代码执行 - 
-- 执行可以更快，WebAssembly 指令更接近机器码
-- 垃圾回收 - 目前 WebAssembly 不直接支持垃圾回收，垃圾回收都是手动控制的，所以比自动垃圾回收效率更高。
+WAS 不支持垃圾回收，完全靠手动管理内存
+
+:arrow_right: 垃圾回收效率更高
 
 ---
 
 ### 机器是如何解析和运行 WebAssembly 代码？
 
-<!-- *template: gaia -->
+<!-- *template: invert -->
 <!-- *page_number: false -->
 
  WebAssembly 
@@ -238,9 +203,6 @@ ADD R1 R2
 
 ---
 
-
-
-
 ### WebAssembly 🚀
 <!-- *template: gaia -->
 <!-- *page_number: false -->
@@ -271,7 +233,7 @@ ADD R1 R2
 
 ---
 
-### 将 `c` `c++` 编译成 `.wasm` 文件
+### 将 `c` `c++` 编译成 `.wasm` 文件 （有大量环境依赖）
 
 ```bash
 git clone https://github.com/juj/emsdk.git
@@ -341,28 +303,28 @@ WebAssembly 提供了前端处理计算和处理性能的解决方案：
 ### Example
 
 ```js
+var importObject = {
+  imports: {
+    imported_func: function(arg) {
+      console.log(arg);
+    }
+  }
+};
 fetch('module.wasm').then(response =>
   response.arrayBuffer()
 ).then(bytes =>
   WebAssembly.instantiate(bytes, importObject)
 ).then(results => {
+  console.log(results.instance)
   // Do something with the compiled results!
 });
-fetchAndInstantiate('myModule.wasm', importObject)
-.then(instance => {
-  // 调用导出函数：
-  instance.exports.exported_func(); 
-  // 或者获取导出内存的缓存内容：
-  var i32 = new Uint32Array(instance.exports.memory.buffer); 
-  // 或者获取导出表格中的元素：
-  var table = instance.exports.table; 
-})
 ```
 ---
 
 ### 应用 👾
 
 <!-- *template: invert  -->
+<!-- *page_number: false -->
 
 ![bg 150%](./images/google-earth.png)
 
@@ -379,7 +341,6 @@ fetchAndInstantiate('myModule.wasm', importObject)
 ---
 
 ### 思考 :thinking:
-
 
 > 如果各种语言都能用来开发 WebAssembly ，能不能终结 JS 在 Web 上的统治地位？
 
