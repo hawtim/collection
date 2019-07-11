@@ -9,11 +9,30 @@
 ### 从入门到实践 :dove:
 
 ###### 张浩田
-###### 2019.07.10
+###### 2019.07.12
+
+---
+
+### WebAssembly 🚀
+<!-- *template: invert -->
+<!-- *page_number: false -->
+
+###### 运行在现代网络浏览器中的新型代码
+
+---
+
+### MDN
+
+- 为诸如 C、C++ 和 Rust 等低级源语言提供一个高效的编译目标
+- 提供了一种以接近本地速度运行多种语言编写的代码的方式
+- 模块可以导入到 web/app 中，并暴露函数供 JS 使用
+- JS 框架可以使用 webAssembly 来获得巨大性能优势和新特性
 
 ---
 
 ### JavaScript 的性能历史🕛
+
+<!-- *template: invert -->
 
 1. 1995 年 JavaScript 诞生。
 2. 2008年，浏览器加入了即时编译器，又称之为 JIT (just-in-time) 
@@ -45,9 +64,9 @@
 
 ### 解释器
 
-使用解释器，翻译的过程基本上是一行一行及时生效的。
+使用解释器，翻译的过程基本上是一行一行及时生效的
 
-浏览器早期使用 `JavaScript` 解释器
+浏览器早期使用 JS 解释器
 
 ==优点:== 在执行代码时不需知道整个代码的编译步骤
 
@@ -57,9 +76,9 @@
 
 ### 编译器
 
-编译器是另外一种工作方式，它在执行前翻译。
+编译器是另外一种工作方式，它在执行前翻译
 
-浏览器厂商在 2008 年引入 JavaScript 引擎
+浏览器厂商在 2008 年引入即时编译器
 
 ==优点:== 运行相同代码的时候，不需重新转换代码，执行效率更高
 
@@ -155,139 +174,27 @@ WAS 不支持垃圾回收，完全靠手动管理内存
 
 ---
 
-### 机器是如何解析和运行 WebAssembly 代码？
+### 编译和运行 WebAssembly 代码
 
 <!-- *template: invert -->
 <!-- *page_number: false -->
-
- WebAssembly 
-
-- 计算部分 - 由算术逻辑单元（ALU）完成
-
-- 短期储存 - 由寄存器（Registers）提供
-
-- 长期储存 - 由随机存储器（RAM）提供
-
----
-
-### 代码的转换
-
-我们知道 WAS 的代码非常接近机器码，但 WAS 和机器汇编不一样，机器语言（X86,ARM）都对应特定的机器架构。
-
-```
-ADD R1 R2
-```
-
-我们希望将任何一种高级编程语言转换为任何一种汇编语言，这样的话需要创建一大堆不同的翻译器。
-
-> 这样做的效率非常低
 
 ---
 
 ### 中间代码 IR
 
-为了解决这个问题，大多数编译器会在高级语言和汇编语言之间多加一层，编译器将高级语言翻译成一种更低级的语言，但比机器码的等级高，这就是中间代码 IR
+前面说了，webAssembly 的代码非常接近汇编语言，而汇编语言存在的问题就是和机器设备的平台（例如 x64 x86 ARM）有关联，直接将各种高级代码转换为汇编语言非常费力（需要各种语言的转换工具）。
+为解决这个问题，大多数编译器会在高级语言和汇编语言之间多加一层，编译器将高级语言翻译成一种更低级的语言，但比机器码的等级高，这就是中间代码 IR
 
-> 编译器可以将任何一种高级语言转换成一种中间语言
 
 ---
 
-### WebAssembly 指令
+### 虚拟指令 wasm
 
-###### 虚拟指令
-
-将 WebAssembly 当做是另外一种目标汇编语言，我们上面说了，汇编语言和机器架构是一一对应的
-当 WebAssembly 运行在用户机器的 web 平台上，你不知道你的代码将会运行在哪种机器结构上
-所以 WebAssembly 需要避免代码直接在物理机上运行，因为平台的不同可能会导致代码出错
-因此，WebAssembly 的代码，是一个概念上的机器语言，也被称为虚拟指令，它比JS更快转换成机器代码，不直接和特定的硬件特定的机器代码对应
-
----
-
-### WebAssembly 🚀
-<!-- *template: gaia -->
-<!-- *page_number: false -->
-
-###### 运行在现代网络浏览器中的新型代码
-
----
-
-### MDN
-<!-- *template: invert -->
-
-###### 新的性能特性和效果
-- 为诸如 `C`、`C++` 和 `Rust` 等低级源语言提供一个高效的编译目标
-- 提供了一种以接近本地速度运行多种语言编写的代码的方式
-- 模块可以导入到`web/app` 中，并暴露函数供 JS 使用
-- JS 框架可以使用 `WebAssembly` 来获得巨大性能优势和新特性
-
----
-
-#### 提供高效的编译目标？
-
-假设没有 `wasm` 编译结果要到客户端平台运行？
-- `web` 端要转成 `JavaScript`
-- `Android` 端可能转成 `java` 或者 `kotlin`
-- `ios` 端可能转成 `swift` 或者 `object-c`
-
-这些语言都不是低级源语言，而通过 `wasm` 直接一步到位，将代码编译成二进制的格式，一步到位。这点是其高效的地方
-
----
-
-### 将 `c` `c++` 编译成 `.wasm` 文件 （有大量环境依赖）
-
-```bash
-git clone https://github.com/juj/emsdk.git
-cd emsdk
-# 在 Windows 上
-emsdk install --build=Release sdk-incoming-64bit binaryen-master-64bit
-emsdk activate --global --build=Release sdk-incoming-64bit binaryen-master-64bit
-```
-```c
-#include <stdio.h>
-int main(int argc, char ** argv) {
-  printf("Hello World\n");
-}
-```
-
-```bash
-emcc hello.c -s WASM=1 -o hello.html
-```
----
-
-### 输出
-
-
-- `hello.wasm` 
-> 二进制的 `wasm` 模块代码
-- `hello.js` 
-> 包含了在原生 C 函数和 `JavaScript/wasm` 之间转换的胶水代码文件
-- `hello.html` 
-> 一个用来加载，编译，实例化你的 `wasm` 代码并且将它输出在浏览器显示上的一个 `HTML` 文件
-
----
-
-### 使用
-
-现在使用一个支持 `WebAssembly` 的浏览器，加载生成的 `hello.html `。
-
-如果一切顺利，你应该可以在页面上的 `Emscripten` 控制台和浏览器控制台中看到 `"Hello World"` 的输出。
-
-更多具体的用法这里 >>
-
----
-
-
-### 客户端的痛 💔
-
-<!-- *template: default  -->
-
-> 客户端的大性能问题
-
-WebAssembly 提供了前端处理计算和处理性能的解决方案：
-- 音视频编码解码 H264、H265
-- WebGL 进行大数据处理及呈现 
-- JavaScript 制作游戏的性能问题
-
+将 WAS 当做是另外一种目标汇编语言，我们上面说了，汇编语言和机器架构是一一对应的
+当 WAS 运行在用户机器的 web 平台上，你不知道你的代码将会运行在哪种机器结构上
+所以 WAS 需要避免代码直接在平台上运行，因为平台的不同可能会导致代码出错
+所以 WAS 运行在按照 WAS 规范开发出来的虚拟机上，也被称为虚拟指令，它比JS更快转换成机器代码，不直接和特定的硬件特定的机器代码对应
 
 ---
 
@@ -315,10 +222,25 @@ fetch('module.wasm').then(response =>
 ).then(bytes =>
   WebAssembly.instantiate(bytes, importObject)
 ).then(results => {
-  console.log(results.instance)
-  // Do something with the compiled results!
+  console.log(results.instance) // 获取返回的 WAS 示例
 });
 ```
+---
+
+### DEMO
+
+#### 基于 assemblyScript
+<!-- *template: invert  -->
+<!-- *page_number: false -->
+
+---
+
+### 展望
+
+从上面的内容可见 WebAssembly 主要是为了解决 JS 的性能瓶颈，也就是说 WebAssembly 适合用于需要大量计算的场景
+
+下面讲讲应用与现状
+
 ---
 
 ### 应用 👾
@@ -334,29 +256,31 @@ fetch('module.wasm').then(response =>
 
 - `Egret Engine` — 最受欢迎的 HTML 5 游戏引擎，让游戏引擎快 3 倍
 
-- `H264/H265` —  解码 `H264/H265` WEB 播放器
+---
 
-> 使用 WebAssembly 能获得数倍的性能提升
+### 现状
+
+- 浏览器兼容性不好，只有最新版本的浏览器支持，并且不同的浏览器对 JS WebAssembly 互调的 API 支持不一致
+- 生态工具不完善不成熟，目前一门体验流畅的编写 WebAssembly 的语言还比较少，上面演示的 assemblyScript 也还有一段路要走
+- 需要业界更多踩坑的人来完善和探索
 
 ---
 
-### 思考 :thinking:
+### 一点思考 :thinking:
 
-> 如果各种语言都能用来开发 WebAssembly ，能不能终结 JS 在 Web 上的统治地位？
+<!-- *template: invert  -->
 
-> WebAssembly 支持操作 DOM ，等技术成熟。各大浏览器都支持 WebAssembly 必然会产生基于 WebAssembly 的前端框架，到时 JS 真的可能被替代了
+WAS 技术成熟了，所有的语言都可以用来做 Web 开发，那时候 JS 在前端的统治地位是否会动摇？
 
 ---
 
 ### 参考文档 :blue_book:
 
-<!-- template: default  -->
-
 - [基于 wasm 的 H265 Web 播放器](https://github.com/sonysuqin/WasmVideoPlayer)
 
 - [WebAssembly 和 Go：对未来的观望](https://www.oschina.net/translate/webassembly-and-go-a-look-to-the-future)
 
-- [eBay 实战 WebAssembly: 50 倍性能提升](https://www.codercto.com/a/83131.html)(实践细节)
+- [eBay 实战 WebAssembly: 50 倍性能提升](https://www.codercto.com/a/83131.html)
 
 - [Assemblyscript Doc](https://docs.assemblyscript.org/)
 
@@ -370,6 +294,6 @@ fetch('module.wasm').then(response =>
 
 ### 致谢 :heart: 160FE
 
-<!-- *template: default  -->
+<!-- *template: invert  -->
 <!-- *page_number: false -->
 
