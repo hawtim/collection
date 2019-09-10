@@ -194,7 +194,7 @@ WAS 不支持垃圾回收，完全靠手动管理内存
 将 WAS 当做是另外一种目标汇编语言，我们上面说了，汇编语言和机器架构是一一对应的
 当 WAS 运行在用户机器的 web 平台上，你不知道你的代码将会运行在哪种机器结构上
 所以 WAS 需要避免代码直接在平台上运行，因为平台的不同可能会导致代码出错
-所以 WAS 运行在按照 WAS 规范开发出来的虚拟机上，也被称为虚拟指令，它比JS更快转换成机器代码，不直接和特定的硬件特定的机器代码对应
+所以 WAS 运行在按照 WAS 规范开发出来的虚拟机上，也被称为虚拟指令，它比 JS 更快转换成机器代码，不直接和特定的硬件特定的机器代码对应
 
 ---
 
@@ -229,7 +229,16 @@ fetch('module.wasm').then(response =>
 
 ### DEMO
 
-#### 基于 assemblyScript
+---
+
+#### 目前能编译成 webAssembly 字节码的高级语言
+
+- AssemblyScript - 语法和 TypeScript 一致，对前端来说学习成本低，为前端编写 WebAssembly 最佳选择
+- c\c++ - 官方推荐的方式
+- Rust - 语法复杂、学习成本高，对前端来说可能会不适应
+- Kotlin - 语法和 Java、JS 相似，语言学习成本低
+- Golang - 语法简单学习成本低。但对 WebAssembly 的支持还处于未正式发布阶段
+
 <!-- *template: invert  -->
 <!-- *page_number: false -->
 
@@ -239,7 +248,7 @@ fetch('module.wasm').then(response =>
 
 从上面的内容可见 WebAssembly 主要是为了解决 JS 的性能瓶颈，也就是说 WebAssembly 适合用于需要大量计算的场景
 
-下面讲讲应用与现状
+:arrow_down:下面讲讲应用与现状
 
 ---
 

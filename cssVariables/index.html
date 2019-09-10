@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CSS 变量教程</title>
+    <title>CSS 变量</title>
 </head>
 <style>
     /* 变量名前面要加两根连词线， 并且对大小写敏感 */
@@ -35,7 +35,7 @@
     * {
         color: var(--color);
     }
-    
+
     /*响应式布局，在media命令里声明变量，使得不同的屏幕宽度有不同的变量值*/
     body {
         --primary: green;
@@ -51,7 +51,7 @@
         body {
             --primary: blue;
             --secondary: #7F583F;
-        }  
+        }
     }
 
     @media screen and (max-width: 640px) {
@@ -102,7 +102,7 @@
         --foo: '20px';
         font-size:var(--foo)
     }
-    
+
     /*兼容性处理*/
     /*对于不支持 CSS 变量的浏览器，可以采用下面的写法。*/
     a {
