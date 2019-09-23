@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 // res.get() 返回指定的HTTP头
 // res.json() 传送JSON响应
 // res.jsonp() 传送JSONP响应
-// res.location() 只设置响应的Location HTTP 头，不设置状态码或 close Response
+// res.location() 只设置响应的 Location HTTP 头，不设置状态码或 close Response
 // res.redirect() 设置响应Location HTTP 头，并且设置状态码 302
 // res.render(view, [local], callback) 渲染一个view，同事向callback传递渲染后的字符串，如果在渲染过程中有错误，next(err)将会被自动调用
 // callback 将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出
