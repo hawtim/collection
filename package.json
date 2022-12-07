@@ -12,7 +12,7 @@
     "cookie-parser": "1.4.3",
     "deep-diff": "0.3.8",
     "element-ui": "^2.2.1",
-    "express": "4.16.2",
+    "express": "4.17.3",
     "feather-icons": "3.3.0",
     "gulp": "3.9.1",
     "lighthouse": "^2.6.0",
